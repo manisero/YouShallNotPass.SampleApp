@@ -10,6 +10,8 @@ namespace Manisero.YouShallNotPass.SampleApp
 
     public class AppGateway : IAppGateway
     {
+        public static readonly AppGateway Instance = new AppGateway();
+
         private readonly IDictionary<object, object> _commandHandlers = new Dictionary<object, object>
         {
             [typeof(CreateUserCommand)] = new CreateUserCommandHandler()
