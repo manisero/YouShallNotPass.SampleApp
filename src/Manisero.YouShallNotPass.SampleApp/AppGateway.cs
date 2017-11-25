@@ -22,7 +22,10 @@ namespace Manisero.YouShallNotPass.SampleApp
             var handler = (ICommandHanlder<TCommand>)_commandHandlers[typeof(TCommand)];
             handler.Handle(command);
 
-            return new CommandResult();
+            return new CommandResult
+            {
+                ValidationError = "Invalid"
+            };
         }
     }
 }

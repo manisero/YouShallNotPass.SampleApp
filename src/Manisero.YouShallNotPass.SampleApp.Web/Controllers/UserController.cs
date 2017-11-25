@@ -1,15 +1,23 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Web.Http;
 using Manisero.YouShallNotPass.SampleApp.Commands;
 
 namespace Manisero.YouShallNotPass.SampleApp.Web.Controllers
 {
     public class UserController : ApiController
     {
-        public object Post(CreateUserCommand command)
+        public IHttpActionResult Post(CreateUserCommand command)
         {
             var result = AppGateway.Instance.Handle(command);
 
-            return result;
+            if (result.Success())
+            {
+                return Ok();
+            }
+            else
+            {
+                return Content(HttpStatusCode.BadRequest, result.ValidationError);
+            }
         }
     }
 }
