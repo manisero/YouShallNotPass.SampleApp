@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manisero.YouShallNotPass.SampleApp.Web", "Manisero.YouShallNotPass.SampleApp.Web\Manisero.YouShallNotPass.SampleApp.Web.csproj", "{9980183B-785A-46CC-80CB-F60409FF9F3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manisero.YouShallNotPass.SampleApp", "Manisero.YouShallNotPass.SampleApp\Manisero.YouShallNotPass.SampleApp.csproj", "{6E8EAED3-C9E5-4E50-9C2D-93EAEEE894AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9980183B-785A-46CC-80CB-F60409FF9F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9980183B-785A-46CC-80CB-F60409FF9F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9980183B-785A-46CC-80CB-F60409FF9F3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E8EAED3-C9E5-4E50-9C2D-93EAEEE894AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E8EAED3-C9E5-4E50-9C2D-93EAEEE894AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E8EAED3-C9E5-4E50-9C2D-93EAEEE894AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E8EAED3-C9E5-4E50-9C2D-93EAEEE894AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
