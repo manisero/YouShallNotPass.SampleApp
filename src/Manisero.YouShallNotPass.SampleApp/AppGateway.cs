@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.SampleApp.Commands;
+using Manisero.YouShallNotPass.SampleApp.Validation;
 
 namespace Manisero.YouShallNotPass.SampleApp
 {
@@ -13,6 +15,7 @@ namespace Manisero.YouShallNotPass.SampleApp
         public static readonly AppGateway Instance = new AppGateway();
 
         private readonly IValidationEngine _validationEngine;
+        private readonly IValidationErrorFormattingEngine<object> _validationErrorFormattingEngine;
 
         private readonly IDictionary<object, object> _commandHandlers = new Dictionary<object, object>
         {
@@ -21,23 +24,35 @@ namespace Manisero.YouShallNotPass.SampleApp
 
         public AppGateway()
         {
-            _validationEngine = new ValidationEngineBuilder()
-                .RegisterValidationRule(typeof(CreateUserCommand), CreateUserCommand.ValidationRule)
-                .Build();
+            _validationEngine = new ValidationEngineFactory().Create();
+            _validationErrorFormattingEngine = new ValidationErrorFormattingEngineFactory().Create();
         }
 
         public CommandResult Handle<TCommand>(TCommand command)
         {
+            return ValidateCommand(command) ??
+                   HandleCommand(command);
+        }
+
+        private CommandResult ValidateCommand<TCommand>(TCommand command)
+        {
             var validationResult = _validationEngine.Validate(command);
 
-            if (validationResult.HasError())
+            if (!validationResult.HasError())
             {
-                return new CommandResult
-                {
-                    ValidationError = validationResult.Error
-                };
+                return null;
             }
 
+            var validationError = _validationErrorFormattingEngine.Format(validationResult);
+
+            return new CommandResult
+            {
+                ValidationError = validationError
+            };
+        }
+
+        private CommandResult HandleCommand<TCommand>(TCommand command)
+        {
             var handler = (ICommandHanlder<TCommand>)_commandHandlers[typeof(TCommand)];
             handler.Handle(command);
 

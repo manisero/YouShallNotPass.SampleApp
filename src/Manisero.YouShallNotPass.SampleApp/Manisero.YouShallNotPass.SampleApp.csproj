@@ -48,9 +48,14 @@
     <Compile Include="ICommandHanlder.cs" />
     <Compile Include="AppGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\ValidationEngineFactory.cs" />
+    <Compile Include="Validation\ValidationErrorFormattingEngineFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ValidationErrorFormatting\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
