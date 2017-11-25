@@ -8,6 +8,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations
 
     public class UserEmailUniqueValidationError
     {
+        public const string Code = "UserEmailUnique";
         public static readonly UserEmailUniqueValidationError Instance = new UserEmailUniqueValidationError();
     }
 

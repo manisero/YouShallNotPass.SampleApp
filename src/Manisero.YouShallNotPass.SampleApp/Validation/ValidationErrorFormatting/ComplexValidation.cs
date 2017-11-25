@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using Manisero.YouShallNotPass.ErrorFormatting;
+using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
 using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting
 {
     public class ComplexValidationErrorMessage
     {
-        public string Code => "Complex";
+        public string Code => BuiltInValidationCodes.Complex;
         public IDictionary<string, object> MemberErrors { get; set; } = new Dictionary<string, object>();
         public object OverallError { get; set; }
     }

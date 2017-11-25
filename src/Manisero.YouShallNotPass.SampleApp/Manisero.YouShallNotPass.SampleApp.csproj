@@ -57,6 +57,7 @@
     <Compile Include="Validation\ValidationErrorFormattingEngineFactory.cs" />
     <Compile Include="Validation\ValidationErrorFormatting\ValidationErrorMessage.cs" />
     <Compile Include="Validation\ValidationRules.cs" />
+    <Compile Include="Validation\Validations\BuiltInValidationCodes.cs" />
     <Compile Include="Validation\Validations\UserEmailUniqueValidation.cs" />
     <Compile Include="Validation\Validations\UserExistsValidation.cs" />
   </ItemGroup>

@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using Manisero.YouShallNotPass.ErrorFormatting;
+using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
 using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting
 {
     public class AllValidationErrorMessage
     {
-        public string Code => "All";
+        public string Code => BuiltInValidationCodes.All;
         public ICollection<object> Errors { get; set; } = new List<object>();
     }
 

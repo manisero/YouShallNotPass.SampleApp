@@ -8,6 +8,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations
 
     public class UserExistsValidationError
     {
+        public const string Code = "UserExists";
         public static readonly UserExistsValidationError Instance = new UserExistsValidationError();
     }
 

@@ -1,5 +1,6 @@
 ﻿using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting;
+using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
 using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation
@@ -9,11 +10,15 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
         public IValidationErrorFormattingEngine<object> Create()
         {
             return new ValidationErrorFormattingEngineBuilder<object>()
+                // Built in
                 .RegisterFullGenericFormatter(typeof(AllValidationErrorFormatter<>))
                 .RegisterFullGenericFormatter(typeof(ComplexValidationErrorFormatter<>))
-                .RegisterErrorMessage<EmailValidationError>("Email")
-                .RegisterErrorMessage<NotNullValidationError>("NotNull")
-                .RegisterErrorMessage<NotNullNorWhiteSpaceValidationError>("NotNullNorWhiteSpace")
+                .RegisterErrorMessage<EmailValidationError>(BuiltInValidationCodes.Email)
+                .RegisterErrorMessage<NotNullValidationError>(BuiltInValidationCodes.NotNull)
+                .RegisterErrorMessage<NotNullNorWhiteSpaceValidationError>(BuiltInValidationCodes.NotNullNorWhiteSpace)
+                // Custom
+                .RegisterErrorMessage<UserEmailUniqueValidationError>(UserEmailUniqueValidationError.Code)
+                .RegisterErrorMessage<UserExistsValidationError>(UserExistsValidationError.Code)
                 .Build();
         }
     }
