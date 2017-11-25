@@ -41,8 +41,8 @@ namespace Manisero.YouShallNotPass.SampleApp
 
             _queryHandlers = new Dictionary<object, object>
             {
-                [typeof(UserQuery)] = new UserQueryHandler(userRepository),
-                [typeof(UsersQuery)] = new UsersQueryHandler(userRepository)
+                [typeof(UsersQuery)] = new UsersQueryHandler(userRepository),
+                [typeof(UserQuery)] = new UserQueryHandler(userRepository)
             };
         }
 

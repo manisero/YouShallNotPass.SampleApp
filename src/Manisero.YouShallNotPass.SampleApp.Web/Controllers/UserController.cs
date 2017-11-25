@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Web.Http;
 using Manisero.YouShallNotPass.SampleApp.Commands;
 using Manisero.YouShallNotPass.SampleApp.Model;
@@ -8,15 +9,23 @@ namespace Manisero.YouShallNotPass.SampleApp.Web.Controllers
 {
     public class UserController : ApiController
     {
-        public object Get(int userId)
+        public object Get()
         {
-            var query = new UserQuery
-            {
-                UserId = userId
-            };
+            var query = new UsersQuery();
 
-            return HandleQuery<UserQuery, User>(query);
+            return HandleQuery<UsersQuery, ICollection<User>>(query);
         }
+
+        // TODO: Multiple actions with the same endpoint are not supported by Swagger. Either change enpoint or remove UserQuery.
+        //public object Get(int userId)
+        //{
+        //    var query = new UserQuery
+        //    {
+        //        UserId = userId
+        //    };
+
+        //    return HandleQuery<UserQuery, User>(query);
+        //}
 
         public IHttpActionResult Post(CreateUserCommand command)
         {
