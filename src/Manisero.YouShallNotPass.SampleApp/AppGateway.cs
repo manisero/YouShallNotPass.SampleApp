@@ -42,9 +42,9 @@ namespace Manisero.YouShallNotPass.SampleApp
 
         private CommandResult ValidateCommand<TCommand>(TCommand command)
         {
-            var validationResult = _validationEngine.Validate(command);
+            var validationResult = _validationEngine.TryValidate(command);
 
-            if (!validationResult.HasError())
+            if (validationResult == null || !validationResult.HasError())
             {
                 return null;
             }
