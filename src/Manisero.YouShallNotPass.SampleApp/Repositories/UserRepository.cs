@@ -7,6 +7,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Repositories
 {
     public interface IUserRepository
     {
+        ICollection<User> GetAll();
         User Get(int userId);
         User GetByEmail(string email);
         void Create(User user);
@@ -17,6 +18,11 @@ namespace Manisero.YouShallNotPass.SampleApp.Repositories
     {
         private int _latestUserId = 0;
         private readonly IDictionary<int, User> _users = new Dictionary<int, User>();
+
+        public ICollection<User> GetAll()
+        {
+            return _users.Values;
+        }
 
         public User Get(int userId)
         {

@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Queries\UserQuery.cs" />
+    <Compile Include="Queries\UsersQuery.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Validation\ValidationEngineFactory.cs" />
     <Compile Include="Validation\ValidationErrorFormatting\AllValidation.cs" />

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.SampleApp.Commands;
+using Manisero.YouShallNotPass.SampleApp.Queries;
 using Manisero.YouShallNotPass.SampleApp.Repositories;
 using Manisero.YouShallNotPass.SampleApp.Validation;
 
@@ -10,6 +11,9 @@ namespace Manisero.YouShallNotPass.SampleApp
     {
         CommandResult Handle<TCommand>(TCommand command)
             where TCommand : ICommand;
+
+        TResult Handle<TQuery, TResult>(TQuery query)
+            where TQuery : IQuery<TResult>;
     }
 
     public class AppGateway : IAppGateway
@@ -20,6 +24,7 @@ namespace Manisero.YouShallNotPass.SampleApp
         private readonly IValidationErrorFormattingEngine<object> _validationErrorFormattingEngine;
 
         private readonly IDictionary<object, object> _commandHandlers;
+        private readonly IDictionary<object, object> _queryHandlers;
 
         public AppGateway()
         {
@@ -33,6 +38,12 @@ namespace Manisero.YouShallNotPass.SampleApp
                 [typeof(CreateUserCommand)] = new CreateUserCommandHandler(userRepository),
                 [typeof(UpdateUserCommand)] = new UpdateUserCommandHandler(userRepository)
             };
+
+            _queryHandlers = new Dictionary<object, object>
+            {
+                [typeof(UserQuery)] = new UserQueryHandler(userRepository),
+                [typeof(UsersQuery)] = new UsersQueryHandler(userRepository)
+            };
         }
 
         public CommandResult Handle<TCommand>(TCommand command)
@@ -40,6 +51,14 @@ namespace Manisero.YouShallNotPass.SampleApp
         {
             return ValidateCommand(command) ??
                    HandleCommand(command);
+        }
+
+        public TResult Handle<TQuery, TResult>(TQuery query)
+            where TQuery : IQuery<TResult>
+        {
+            var handler = (IQueryHandler<TQuery, TResult>)_queryHandlers[typeof(TQuery)];
+
+            return handler.Handle(query);
         }
 
         private CommandResult ValidateCommand<TCommand>(TCommand command)

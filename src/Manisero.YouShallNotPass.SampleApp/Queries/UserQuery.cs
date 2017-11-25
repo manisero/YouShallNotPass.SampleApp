@@ -1,18 +1,26 @@
-﻿using System.Collections.Generic;
-using Manisero.YouShallNotPass.SampleApp.Model;
+﻿using Manisero.YouShallNotPass.SampleApp.Model;
+using Manisero.YouShallNotPass.SampleApp.Repositories;
 
 namespace Manisero.YouShallNotPass.SampleApp.Queries
 {
-    public class UserQuery : IQuery<ICollection<User>>
+    public class UserQuery : IQuery<User>
     {
         public int UserId { get; set; }
     }
 
-    public class UserQueryHandler : IQueryHandler<UserQuery, ICollection<User>>
+    public class UserQueryHandler : IQueryHandler<UserQuery, User>
     {
-        public ICollection<User> Handle(UserQuery query)
+        private readonly IUserRepository _userRepository;
+
+        public UserQueryHandler(
+            IUserRepository userRepository)
         {
-            throw new System.NotImplementedException();
+            _userRepository = userRepository;
+        }
+
+        public User Handle(UserQuery query)
+        {
+            return _userRepository.Get(query.UserId);
         }
     }
 }

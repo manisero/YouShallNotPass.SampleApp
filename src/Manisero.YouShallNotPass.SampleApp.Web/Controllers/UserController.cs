@@ -1,15 +1,21 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Web.Http;
 using Manisero.YouShallNotPass.SampleApp.Commands;
+using Manisero.YouShallNotPass.SampleApp.Model;
+using Manisero.YouShallNotPass.SampleApp.Queries;
 
 namespace Manisero.YouShallNotPass.SampleApp.Web.Controllers
 {
     public class UserController : ApiController
     {
-        public IHttpActionResult Get(int userId)
+        public object Get(int userId)
         {
-            throw new NotImplementedException();
+            var query = new UserQuery
+            {
+                UserId = userId
+            };
+
+            return HandleQuery<UserQuery, User>(query);
         }
 
         public IHttpActionResult Post(CreateUserCommand command)
@@ -35,6 +41,12 @@ namespace Manisero.YouShallNotPass.SampleApp.Web.Controllers
             {
                 return Content(HttpStatusCode.BadRequest, result.ValidationError);
             }
+        }
+
+        private TResult HandleQuery<TQuery, TResult>(TQuery query)
+            where TQuery : IQuery<TResult>
+        {
+            return AppGateway.Instance.Handle<TQuery, TResult>(query);
         }
     }
 }
