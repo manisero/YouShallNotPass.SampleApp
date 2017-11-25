@@ -8,6 +8,8 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
         {
             return new ValidationEngineBuilder()
                 .RegisterValidationRule(typeof(CreateUserCommand), CreateUserCommand.ValidationRule)
+                .RegisterValidationRule(typeof(UpdateUserCommand), UpdateUserCommand.ValidationRule)
+                // TODO: Register UserId and Email validators
                 .Build();
         }
     }

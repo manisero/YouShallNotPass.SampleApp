@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Manisero.YouShallNotPass.SampleApp.Model;
 
@@ -7,6 +8,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Repositories
     public interface IUserRepository
     {
         User Get(int userId);
+        User GetByEmail(string email);
         void Create(User user);
         void Put(User user);
     }
@@ -23,6 +25,11 @@ namespace Manisero.YouShallNotPass.SampleApp.Repositories
             return _users.TryGetValue(userId, out result)
                 ? result
                 : null;
+        }
+
+        public User GetByEmail(string email)
+        {
+            return _users.Values.SingleOrDefault(x => x.Email == email);
         }
 
         public void Create(User user)
