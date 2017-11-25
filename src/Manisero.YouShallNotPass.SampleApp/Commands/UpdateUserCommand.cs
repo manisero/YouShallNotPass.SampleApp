@@ -1,4 +1,7 @@
-﻿namespace Manisero.YouShallNotPass.SampleApp.Commands
+﻿using Manisero.YouShallNotPass.SampleApp.Model;
+using Manisero.YouShallNotPass.SampleApp.Repositories;
+
+namespace Manisero.YouShallNotPass.SampleApp.Commands
 {
     public class UpdateUserCommand
     {
@@ -12,9 +15,25 @@
 
     public class UpdateUserCommandHandler : ICommandHanlder<UpdateUserCommand>
     {
+        private readonly IUserRepository _userRepository;
+
+        public UpdateUserCommandHandler(
+            IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         public void Handle(UpdateUserCommand command)
         {
-            // Application logic...
+            var user = new User
+            {
+                UserId = command.UserId,
+                Email = command.Email,
+                FirstName = command.FirstName,
+                LastName = command.LastName
+            };
+
+            _userRepository.Put(user);
         }
     }
 }

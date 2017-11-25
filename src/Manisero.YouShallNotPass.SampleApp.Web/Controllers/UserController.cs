@@ -8,6 +8,16 @@ namespace Manisero.YouShallNotPass.SampleApp.Web.Controllers
     {
         public IHttpActionResult Post(CreateUserCommand command)
         {
+            return HandleCommand(command);
+        }
+
+        public IHttpActionResult Put(UpdateUserCommand command)
+        {
+            return HandleCommand(command);
+        }
+
+        private IHttpActionResult HandleCommand<TCommand>(TCommand command)
+        {
             var result = AppGateway.Instance.Handle(command);
 
             if (result.Success())
