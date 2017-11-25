@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Manisero.YouShallNotPass.SampleApp.Model;
 using Manisero.YouShallNotPass.SampleApp.Repositories;
+using Manisero.YouShallNotPass.SampleApp.Validation;
 using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Commands
@@ -15,16 +16,9 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
         {
             MemberRules = new Dictionary<string, IValidationRule>
             {
-                [nameof(Email)] = new AllValidationRule<string>
-                {
-                    Rules = new List<IValidationRule<string>>
-                    {
-                        new NotNullValidationRule<string>(),
-                        new EmailValidationRule()
-                    }
-                },
-                [nameof(FirstName)] = new NotNullNorWhiteSpaceValidationRule(),
-                [nameof(LastName)] = new NotNullNorWhiteSpaceValidationRule()
+                [nameof(Email)] = ValidationRules.UserEmailValidationRule,
+                [nameof(FirstName)] = ValidationRules.UserFirstNameValidationRule,
+                [nameof(LastName)] = ValidationRules.UserLastNameValidationRule
             }
         };
     }
