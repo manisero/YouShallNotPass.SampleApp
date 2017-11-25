@@ -111,10 +111,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Manisero.YouShallNotPass.SampleApp\Manisero.YouShallNotPass.SampleApp.csproj">
       <Project>{6e8eaed3-c9e5-4e50-9c2d-93eaeee894aa}</Project>
