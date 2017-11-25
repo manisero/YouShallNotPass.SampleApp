@@ -6,7 +6,7 @@ using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Commands
 {
-    public class CreateUserCommand
+    public class CreateUserCommand : ICommand
     {
         public string Email { get; set; }
         public string FirstName { get; set; }
@@ -23,7 +23,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
         };
     }
 
-    public class CreateUserCommandHandler : ICommandHanlder<CreateUserCommand>
+    public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>
     {
         private readonly IUserRepository _userRepository;
 

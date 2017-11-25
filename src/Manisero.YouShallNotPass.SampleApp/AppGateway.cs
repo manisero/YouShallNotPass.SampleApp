@@ -8,7 +8,8 @@ namespace Manisero.YouShallNotPass.SampleApp
 {
     public interface IAppGateway
     {
-        CommandResult Handle<TCommand>(TCommand command);
+        CommandResult Handle<TCommand>(TCommand command)
+            where TCommand : ICommand;
     }
 
     public class AppGateway : IAppGateway
@@ -35,6 +36,7 @@ namespace Manisero.YouShallNotPass.SampleApp
         }
 
         public CommandResult Handle<TCommand>(TCommand command)
+            where TCommand : ICommand
         {
             return ValidateCommand(command) ??
                    HandleCommand(command);
@@ -58,8 +60,9 @@ namespace Manisero.YouShallNotPass.SampleApp
         }
 
         private CommandResult HandleCommand<TCommand>(TCommand command)
+            where TCommand : ICommand
         {
-            var handler = (ICommandHanlder<TCommand>)_commandHandlers[typeof(TCommand)];
+            var handler = (ICommandHandler<TCommand>)_commandHandlers[typeof(TCommand)];
             handler.Handle(command);
 
             return new CommandResult();

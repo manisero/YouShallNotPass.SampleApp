@@ -6,7 +6,7 @@ using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Commands
 {
-    public class UpdateUserCommand
+    public class UpdateUserCommand : ICommand
     {
         public int UserId { get; set; }
         public string Email { get; set; }
@@ -25,7 +25,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
         };
     }
 
-    public class UpdateUserCommandHandler : ICommandHanlder<UpdateUserCommand>
+    public class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand>
     {
         private readonly IUserRepository _userRepository;
 
