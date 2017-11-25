@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using Swashbuckle.Application;
 
 namespace Manisero.YouShallNotPass.SampleApp.Web
 {
@@ -13,6 +11,14 @@ namespace Manisero.YouShallNotPass.SampleApp.Web
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: "swagger",
+                routeTemplate: "",
+                defaults: null,
+                constraints: null,
+                handler: new RedirectHandler((message => message.RequestUri.ToString()), "swagger")
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
