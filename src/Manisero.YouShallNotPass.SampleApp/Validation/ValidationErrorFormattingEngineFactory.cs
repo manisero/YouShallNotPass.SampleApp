@@ -12,6 +12,8 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
                 .RegisterFullGenericFormatter(typeof(AllValidationErrorFormatter<>))
                 .RegisterFullGenericFormatter(typeof(ComplexValidationErrorFormatter<>))
                 .RegisterErrorMessage<EmailValidationError>("Email")
+                .RegisterErrorMessage<NotNullValidationError>("NotNull")
+                .RegisterErrorMessage<NotNullNorWhiteSpaceValidationError>("NotNullNorWhiteSpace")
                 .Build();
         }
     }
