@@ -24,9 +24,11 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations
 
         public UserEmailUniqueValidationError Validate(string value, UserEmailUniqueValidationRule rule, ValidationContext context)
         {
+            // TODO: For UpdateUserCommand this will return error if command does not change Email. Fix this.
+
             var user = _userRepository.GetByEmail(value);
 
-            return user == null
+            return user != null
                 ? UserEmailUniqueValidationError.Instance
                 : null;
         }

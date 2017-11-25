@@ -14,7 +14,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
             {
                 new NotNullValidationRule<string>(),
                 new EmailValidationRule(),
-                // TODO: Should be unique
+                new UserEmailUniqueValidationRule()
             }
         };
 

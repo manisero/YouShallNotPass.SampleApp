@@ -22,10 +22,10 @@ namespace Manisero.YouShallNotPass.SampleApp
 
         public AppGateway()
         {
-            _validationEngine = new ValidationEngineFactory().Create();
-            _validationErrorFormattingEngine = new ValidationErrorFormattingEngineFactory().Create();
-
             var userRepository = new UserRepository();
+
+            _validationEngine = new ValidationEngineFactory().Create(userRepository);
+            _validationErrorFormattingEngine = new ValidationErrorFormattingEngineFactory().Create();
 
             _commandHandlers = new Dictionary<object, object>
             {
