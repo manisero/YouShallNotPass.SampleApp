@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.SampleApp.Commands;
+using Manisero.YouShallNotPass.SampleApp.Repositories;
 using Manisero.YouShallNotPass.SampleApp.Validation;
 
 namespace Manisero.YouShallNotPass.SampleApp
@@ -17,15 +18,19 @@ namespace Manisero.YouShallNotPass.SampleApp
         private readonly IValidationEngine _validationEngine;
         private readonly IValidationErrorFormattingEngine<object> _validationErrorFormattingEngine;
 
-        private readonly IDictionary<object, object> _commandHandlers = new Dictionary<object, object>
-        {
-            [typeof(CreateUserCommand)] = new CreateUserCommandHandler()
-        };
+        private readonly IDictionary<object, object> _commandHandlers;
 
         public AppGateway()
         {
             _validationEngine = new ValidationEngineFactory().Create();
             _validationErrorFormattingEngine = new ValidationErrorFormattingEngineFactory().Create();
+
+            var userRepository = new UserRepository();
+
+            _commandHandlers = new Dictionary<object, object>
+            {
+                [typeof(CreateUserCommand)] = new CreateUserCommandHandler(userRepository)
+            };
         }
 
         public CommandResult Handle<TCommand>(TCommand command)

@@ -44,10 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandResult.cs" />
+    <Compile Include="Commands\UpdateUserCommand.cs" />
     <Compile Include="Commands\CreateUserCommand.cs" />
     <Compile Include="ICommandHanlder.cs" />
     <Compile Include="AppGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Validation\ValidationEngineFactory.cs" />
     <Compile Include="Validation\ValidationErrorFormatting\AllValidation.cs" />
     <Compile Include="Validation\ValidationErrorFormatting\ComplexValidation.cs" />
