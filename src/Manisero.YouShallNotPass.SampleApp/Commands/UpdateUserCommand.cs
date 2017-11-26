@@ -23,11 +23,23 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
                 [nameof(FirstName)] = ValidationRules.UserFirstNameValidationRule,
                 [nameof(LastName)] = ValidationRules.UserLastNameValidationRule
             },
-            OverallRule = new PropertyValidationRule<UpdateUserCommand, UserEmailUniqueValidationInput>
+            OverallRule = new AllValidationRule<UpdateUserCommand>
             {
-                PropertyName = nameof(Email),
-                ValueGetter = x => new UserEmailUniqueValidationInput(x.UserId, x.Email),
-                ValueValidationRule = new UserEmailUniqueValidationRule()
+                Rules = new List<IValidationRule<UpdateUserCommand>>
+                {
+                    new PropertyValidationRule<UpdateUserCommand, UserEmailUniqueValidationInput>
+                    {
+                        PropertyName = nameof(Email),
+                        ValueGetter = x => new UserEmailUniqueValidationInput(x.UserId, x.Email),
+                        ValueValidationRule = new UserEmailUniqueValidationRule()
+                    },
+                    new PropertyValidationRule<UpdateUserCommand, UserEmailContainsLastNameValidationInput>
+                    {
+                        PropertyName = nameof(Email),
+                        ValueGetter = x => new UserEmailContainsLastNameValidationInput(x.Email, x.LastName),
+                        ValueValidationRule = new UserEmailContainsLastNameValidationRule()
+                    }
+                }
             }
         };
     }

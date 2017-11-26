@@ -64,6 +64,7 @@
     <Compile Include="Validation\ValidationRules.cs" />
     <Compile Include="Validation\Validations\BuiltInValidationCodes.cs" />
     <Compile Include="Validation\Validations\PropertyValidation.cs" />
+    <Compile Include="Validation\Validations\UserEmailContainsLastNameValidation.cs" />
     <Compile Include="Validation\Validations\UserEmailUniqueValidation.cs" />
     <Compile Include="Validation\Validations\UserExistsValidation.cs" />
   </ItemGroup>

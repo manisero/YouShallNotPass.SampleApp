@@ -24,6 +24,12 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
             builder.RegisterFullGenericValidator(typeof(PropertyValidator<,>));
 
             // Specific
+            builder.RegisterValueOnlyBoolValidatorFunc<UserEmailContainsLastNameValidationRule,
+                                                       UserEmailContainsLastNameValidationInput, 
+                                                       UserEmailContainsLastNameValidationError>(
+                                                           UserEmailContainsLastNameValidator.Func, 
+                                                           UserEmailContainsLastNameValidationError.Instance);
+
             builder.RegisterFullValidator(new UserEmailUniqueValidator(userRepository));
             builder.RegisterFullValidator(new UserExistsValidator(userRepository));
         }

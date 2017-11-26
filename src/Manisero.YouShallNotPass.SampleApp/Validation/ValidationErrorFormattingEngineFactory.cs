@@ -21,6 +21,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
                 // Custom generic
                 .RegisterFullGenericFormatter(typeof(PropertyValidationErrorFormatter<,>))
                 // Custom specific
+                .RegisterErrorMessage<UserEmailContainsLastNameValidationError>(UserEmailContainsLastNameValidationError.Code)
                 .RegisterErrorMessage<UserEmailUniqueValidationError>(UserEmailUniqueValidationError.Code)
                 .RegisterErrorMessage<UserExistsValidationError>(UserExistsValidationError.Code)
                 .Build();
