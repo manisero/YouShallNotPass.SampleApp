@@ -45,8 +45,17 @@ namespace Manisero.YouShallNotPass.SampleApp
         public CommandResult Handle<TCommand>(TCommand command)
             where TCommand : ICommand
         {
-            return ValidateCommand(command) ??
-                   HandleCommand(command);
+            var validationError = _validationFacade.Validate(command);
+
+            if (validationError != null)
+            {
+                return new CommandResult { ValidationError = validationError };
+            }
+
+            var handler = (ICommandHandler<TCommand>)_commandHandlers[typeof(TCommand)];
+            handler.Handle(command);
+
+            return new CommandResult();
         }
 
         public TResult Handle<TQuery, TResult>(TQuery query)
@@ -55,24 +64,6 @@ namespace Manisero.YouShallNotPass.SampleApp
             var handler = (IQueryHandler<TQuery, TResult>)_queryHandlers[typeof(TQuery)];
 
             return handler.Handle(query);
-        }
-
-        private CommandResult ValidateCommand<TCommand>(TCommand command)
-        {
-            var error = _validationFacade.Validate(command);
-
-            return error != null
-                ? new CommandResult { ValidationError = error }
-                : null;
-        }
-
-        private CommandResult HandleCommand<TCommand>(TCommand command)
-            where TCommand : ICommand
-        {
-            var handler = (ICommandHandler<TCommand>)_commandHandlers[typeof(TCommand)];
-            handler.Handle(command);
-
-            return new CommandResult();
         }
     }
 }
