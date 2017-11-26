@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting;
 
@@ -37,12 +38,14 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations
     {
         public string Code => "Property";
 
-        public IEnumerable<IValidationErrorMessage> Errors { get; set; }
+        public string PropertyName { get; set; }
+
+        public ICollection<IValidationErrorMessage> Errors { get; set; }
     }
 
     public class PropertyValidationErrorFormatter<TOwner, TValue> : IValidationErrorFormatter<PropertyValidationRule<TOwner, TValue>,
                                                                                               TOwner,
-                                                                                              PropertyValidationError, 
+                                                                                              PropertyValidationError,
                                                                                               IEnumerable<IValidationErrorMessage>>
     {
         public IEnumerable<IValidationErrorMessage> Format(
@@ -51,7 +54,8 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations
         {
             yield return new PropertyValidationErrorMessage
             {
-                Errors = context.Engine.Format(validationResult)
+                PropertyName = validationResult.Rule.PropertyName,
+                Errors = context.Engine.Format(validationResult.Error.Violation).ToArray()
             };
         }
     }
