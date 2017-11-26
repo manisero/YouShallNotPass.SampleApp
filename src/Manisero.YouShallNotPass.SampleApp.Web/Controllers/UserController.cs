@@ -16,17 +16,6 @@ namespace Manisero.YouShallNotPass.SampleApp.Web.Controllers
             return HandleQuery<UsersQuery, ICollection<User>>(query);
         }
 
-        // TODO: Multiple actions with the same endpoint are not supported by Swagger. Either change enpoint or remove UserQuery.
-        //public object Get(int userId)
-        //{
-        //    var query = new UserQuery
-        //    {
-        //        UserId = userId
-        //    };
-
-        //    return HandleQuery<UserQuery, User>(query);
-        //}
-
         public IHttpActionResult Post(CreateUserCommand command)
         {
             return HandleCommand(command);
