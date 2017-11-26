@@ -54,6 +54,7 @@
     <Compile Include="Queries\UserQuery.cs" />
     <Compile Include="Queries\UsersQuery.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Utils\ObjectExtensions.cs" />
     <Compile Include="Validation\ValidationEngineFactory.cs" />
     <Compile Include="Validation\ValidationErrorFormatting\AllValidation.cs" />
     <Compile Include="Validation\ValidationErrorFormatting\ComplexValidation.cs" />

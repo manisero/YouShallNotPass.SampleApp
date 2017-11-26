@@ -1,34 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Manisero.YouShallNotPass.ErrorFormatting;
-using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
 using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting
 {
-    public class AllValidationErrorMessage
+    public class AllValidationErrorFormatter<TValue> : IValidationErrorFormatter<AllValidationRule<TValue>,
+                                                                                 TValue,
+                                                                                 AllValidationError,
+                                                                                 IEnumerable<IValidationErrorMessage>>
     {
-        public string Code => BuiltInValidationCodes.All;
-        public ICollection<object> Errors { get; set; } = new List<object>();
-    }
-
-    public class AllValidationErrorFormatter<TValue> : IValidationErrorFormatter<AllValidationRule<TValue>, TValue, AllValidationError, object>
-    {
-        public object Format(
+        public IEnumerable<IValidationErrorMessage> Format(
             ValidationResult<AllValidationRule<TValue>, TValue, AllValidationError> validationResult,
-            ValidationErrorFormattingContext<object> context)
+            ValidationErrorFormattingContext<IEnumerable<IValidationErrorMessage>> context)
         {
-            var error = validationResult.Error;
-            var result = new AllValidationErrorMessage();
-
-            if (error.Violations != null)
-            {
-                foreach (var violation in error.Violations)
-                {
-                    result.Errors.Add(context.Engine.Format(violation.Value));
-                }
-            }
-
-            return result;
+            return validationResult.Error
+                                   .Violations.Values
+                                   .SelectMany(x => context.Engine.Format(x));
         }
     }
 }

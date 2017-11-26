@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.SampleApp.Commands;
 using Manisero.YouShallNotPass.SampleApp.Queries;
 using Manisero.YouShallNotPass.SampleApp.Repositories;
 using Manisero.YouShallNotPass.SampleApp.Validation;
+using Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting;
 
 namespace Manisero.YouShallNotPass.SampleApp
 {
@@ -21,7 +23,7 @@ namespace Manisero.YouShallNotPass.SampleApp
         public static readonly AppGateway Instance = new AppGateway();
 
         private readonly IValidationEngine _validationEngine;
-        private readonly IValidationErrorFormattingEngine<object> _validationErrorFormattingEngine;
+        private readonly IValidationErrorFormattingEngine<IEnumerable<IValidationErrorMessage>> _validationErrorFormattingEngine;
 
         private readonly IDictionary<object, object> _commandHandlers;
         private readonly IDictionary<object, object> _queryHandlers;
@@ -74,7 +76,7 @@ namespace Manisero.YouShallNotPass.SampleApp
 
             return new CommandResult
             {
-                ValidationError = validationError
+                ValidationError = validationError.Single()
             };
         }
 

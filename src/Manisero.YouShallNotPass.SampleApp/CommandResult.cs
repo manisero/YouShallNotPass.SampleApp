@@ -1,8 +1,10 @@
-﻿namespace Manisero.YouShallNotPass.SampleApp
+﻿using Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting;
+
+namespace Manisero.YouShallNotPass.SampleApp
 {
     public class CommandResult
     {
-        public object ValidationError { get; set; }
+        public IValidationErrorMessage ValidationError { get; set; }
     }
 
     public static class CommandResultExtensions

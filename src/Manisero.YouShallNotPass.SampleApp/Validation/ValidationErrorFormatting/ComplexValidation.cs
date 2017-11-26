@@ -5,18 +5,21 @@ using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting
 {
-    public class ComplexValidationErrorMessage
+    public class ComplexValidationErrorMessage : IValidationErrorMessage
     {
         public string Code => BuiltInValidationCodes.Complex;
-        public IDictionary<string, object> MemberErrors { get; set; } = new Dictionary<string, object>();
-        public object OverallError { get; set; }
+        public IEnumerable<IValidationErrorMessage> OverallError { get; set; }
+        public IDictionary<string, IEnumerable<IValidationErrorMessage>> MemberErrors { get; set; } = new Dictionary<string, IEnumerable<IValidationErrorMessage>>();
     }
 
-    public class ComplexValidationErrorFormatter<TValue> : IValidationErrorFormatter<ComplexValidationRule<TValue>, TValue, ComplexValidationError, object>
+    public class ComplexValidationErrorFormatter<TValue> : IValidationErrorFormatter<ComplexValidationRule<TValue>,
+                                                           TValue,
+                                                           ComplexValidationError,
+                                                           IEnumerable<IValidationErrorMessage>>
     {
-        public object Format(
+        public IEnumerable<IValidationErrorMessage> Format(
             ValidationResult<ComplexValidationRule<TValue>, TValue, ComplexValidationError> validationResult,
-            ValidationErrorFormattingContext<object> context)
+            ValidationErrorFormattingContext<IEnumerable<IValidationErrorMessage>> context)
         {
             var error = validationResult.Error;
             var result = new ComplexValidationErrorMessage();
@@ -34,7 +37,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormattin
                 }
             }
 
-            return result;
+            yield return result;
         }
     }
 }
