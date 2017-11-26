@@ -20,14 +20,18 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
             IValidationEngineBuilder builder,
             IUserRepository userRepository)
         {
+            // Generic
+            builder.RegisterFullGenericValidator(typeof(PropertyValidator<,>));
+
+            // Specific
             builder.RegisterFullValidator(new UserEmailUniqueValidator(userRepository));
             builder.RegisterFullValidator(new UserExistsValidator(userRepository));
         }
 
         private void RegisterRules(IValidationEngineBuilder builder)
         {
-            builder.RegisterValidationRule(typeof(CreateUserCommand), CreateUserCommand.ValidationRule)
-                   .RegisterValidationRule(typeof(UpdateUserCommand), UpdateUserCommand.ValidationRule);
+            builder.RegisterValidationRule(typeof(CreateUserCommand), CreateUserCommand.ValidationRule);
+            builder.RegisterValidationRule(typeof(UpdateUserCommand), UpdateUserCommand.ValidationRule);
         }
     }
 }

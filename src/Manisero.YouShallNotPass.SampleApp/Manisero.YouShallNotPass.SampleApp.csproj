@@ -63,6 +63,7 @@
     <Compile Include="Validation\ValidationFacade.cs" />
     <Compile Include="Validation\ValidationRules.cs" />
     <Compile Include="Validation\Validations\BuiltInValidationCodes.cs" />
+    <Compile Include="Validation\Validations\PropertyValidation.cs" />
     <Compile Include="Validation\Validations\UserEmailUniqueValidation.cs" />
     <Compile Include="Validation\Validations\UserExistsValidation.cs" />
   </ItemGroup>

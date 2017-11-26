@@ -18,7 +18,9 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
                 .RegisterErrorMessage<EmailValidationError>(BuiltInValidationCodes.Email)
                 .RegisterErrorMessage<NotNullValidationError>(BuiltInValidationCodes.NotNull)
                 .RegisterErrorMessage<NotNullNorWhiteSpaceValidationError>(BuiltInValidationCodes.NotNullNorWhiteSpace)
-                // Custom
+                // Custom generic
+                .RegisterFullGenericFormatter(typeof(PropertyValidationErrorFormatter<,>))
+                // Custom specific
                 .RegisterErrorMessage<UserEmailUniqueValidationError>(UserEmailUniqueValidationError.Code)
                 .RegisterErrorMessage<UserExistsValidationError>(UserExistsValidationError.Code)
                 .Build();

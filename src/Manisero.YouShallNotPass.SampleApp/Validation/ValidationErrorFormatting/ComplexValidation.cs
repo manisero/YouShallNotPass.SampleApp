@@ -8,7 +8,9 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormattin
     public class ComplexValidationErrorMessage : IValidationErrorMessage
     {
         public string Code => BuiltInValidationCodes.Complex;
+
         public IEnumerable<IValidationErrorMessage> OverallError { get; set; }
+
         public IDictionary<string, IEnumerable<IValidationErrorMessage>> MemberErrors { get; set; } = new Dictionary<string, IEnumerable<IValidationErrorMessage>>();
     }
 
