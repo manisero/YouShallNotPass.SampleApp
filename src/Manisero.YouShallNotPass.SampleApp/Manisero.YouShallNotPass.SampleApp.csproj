@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Manisero.YouShallNotPass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Manisero.YouShallNotPass.0.0.2\lib\net461\Manisero.YouShallNotPass.dll</HintPath>
+      <HintPath>..\packages\Manisero.YouShallNotPass.0.0.4\lib\net461\Manisero.YouShallNotPass.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

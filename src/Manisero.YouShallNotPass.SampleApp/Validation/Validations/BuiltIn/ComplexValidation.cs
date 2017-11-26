@@ -26,14 +26,14 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn
             var error = validationResult.Error;
             var result = new ComplexValidationErrorMessage();
 
-            if (error.OverallValidationError != null)
+            if (error.OverallViolation != null)
             {
-                result.OverallError = context.Engine.Format(error.OverallValidationError).ToArray();
+                result.OverallError = context.Engine.Format(error.OverallViolation).ToArray();
             }
 
-            if (error.MemberValidationErrors != null)
+            if (error.MemberViolations != null)
             {
-                foreach (var memberValidationError in error.MemberValidationErrors)
+                foreach (var memberValidationError in error.MemberViolations)
                 {
                     result.MemberErrors.Add(memberValidationError.Key,
                                             context.Engine.Format(memberValidationError.Value).ToArray());

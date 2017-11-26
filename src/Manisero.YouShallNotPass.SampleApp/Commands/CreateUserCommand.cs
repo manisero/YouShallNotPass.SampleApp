@@ -16,12 +16,6 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
 
         public static IValidationRule<CreateUserCommand> ValidationRule = new ComplexValidationRule<CreateUserCommand>
         {
-            MemberRules = new Dictionary<string, IValidationRule>
-            {
-                [nameof(Email)] = ValidationRules.UserEmailValidationRule,
-                [nameof(FirstName)] = ValidationRules.UserFirstNameValidationRule,
-                [nameof(LastName)] = ValidationRules.UserLastNameValidationRule
-            },
             OverallRule = new AllValidationRule<CreateUserCommand>
             {
                 Rules = new List<IValidationRule<CreateUserCommand>>
@@ -39,7 +33,13 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
                         ValueValidationRule = new UserEmailContainsLastNameValidationRule()
                     }
                 }
-            } 
+            },
+            MemberRules = new Dictionary<string, IValidationRule>
+            {
+                [nameof(Email)] = ValidationRules.UserEmailValidationRule,
+                [nameof(FirstName)] = ValidationRules.UserFirstNameValidationRule,
+                [nameof(LastName)] = ValidationRules.UserLastNameValidationRule
+            }
         };
     }
 
