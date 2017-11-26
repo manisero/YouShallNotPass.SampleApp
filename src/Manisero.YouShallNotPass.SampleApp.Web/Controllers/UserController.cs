@@ -29,7 +29,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Web.Controllers
         private IHttpActionResult HandleCommand<TCommand>(TCommand command)
             where TCommand : ICommand
         {
-            var result = AppGateway.Instance.Handle(command);
+            var result = AppGateway.Instance.HandleCommand(command);
 
             if (result.Success())
             {
@@ -44,7 +44,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Web.Controllers
         private TResult HandleQuery<TQuery, TResult>(TQuery query)
             where TQuery : IQuery<TResult>
         {
-            return AppGateway.Instance.Handle<TQuery, TResult>(query);
+            return AppGateway.Instance.HandleQuery<TQuery, TResult>(query);
         }
     }
 }

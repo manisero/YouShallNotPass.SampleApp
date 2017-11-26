@@ -8,10 +8,10 @@ namespace Manisero.YouShallNotPass.SampleApp
 {
     public interface IAppGateway
     {
-        CommandResult Handle<TCommand>(TCommand command)
+        CommandResult HandleCommand<TCommand>(TCommand command)
             where TCommand : ICommand;
 
-        TResult Handle<TQuery, TResult>(TQuery query)
+        TResult HandleQuery<TQuery, TResult>(TQuery query)
             where TQuery : IQuery<TResult>;
     }
 
@@ -42,7 +42,7 @@ namespace Manisero.YouShallNotPass.SampleApp
             };
         }
 
-        public CommandResult Handle<TCommand>(TCommand command)
+        public CommandResult HandleCommand<TCommand>(TCommand command)
             where TCommand : ICommand
         {
             var validationError = _validationFacade.Validate(command);
@@ -58,7 +58,7 @@ namespace Manisero.YouShallNotPass.SampleApp
             return new CommandResult();
         }
 
-        public TResult Handle<TQuery, TResult>(TQuery query)
+        public TResult HandleQuery<TQuery, TResult>(TQuery query)
             where TQuery : IQuery<TResult>
         {
             var handler = (IQueryHandler<TQuery, TResult>)_queryHandlers[typeof(TQuery)];
