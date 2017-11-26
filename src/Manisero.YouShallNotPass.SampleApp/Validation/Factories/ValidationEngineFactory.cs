@@ -20,10 +20,6 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
             IValidationEngineBuilder builder,
             IUserRepository userRepository)
         {
-            // Generic
-            builder.RegisterFullGenericValidator(typeof(PropertyValidator<,>));
-
-            // Specific
             builder.RegisterValueOnlyBoolValidatorFunc<UserEmailContainsLastNameValidationRule,
                                                        UserEmailContainsLastNameValidationInput, 
                                                        UserEmailContainsLastNameValidationError>(

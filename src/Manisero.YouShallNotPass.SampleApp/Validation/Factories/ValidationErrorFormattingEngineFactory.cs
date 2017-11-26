@@ -16,10 +16,9 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
                 .RegisterFullGenericFormatter(typeof(AllValidationErrorFormatter<>))
                 .RegisterFullGenericFormatter(typeof(ComplexValidationErrorFormatter<>))
                 .RegisterErrorMessage<EmailValidationError>(BuiltInValidationCodes.Email)
+                .RegisterFullGenericFormatter(typeof(MemberValidationErrorFormatter<,>))
                 .RegisterErrorMessage<NotNullValidationError>(BuiltInValidationCodes.NotNull)
                 .RegisterErrorMessage<NotNullNorWhiteSpaceValidationError>(BuiltInValidationCodes.NotNullNorWhiteSpace)
-                // Custom generic
-                .RegisterFullGenericFormatter(typeof(PropertyValidationErrorFormatter<,>))
                 // Custom specific
                 .RegisterErrorMessage<UserEmailContainsLastNameValidationError>(UserEmailContainsLastNameValidationError.Code)
                 .RegisterErrorMessage<UserEmailUniqueValidationError>(UserEmailUniqueValidationError.Code)

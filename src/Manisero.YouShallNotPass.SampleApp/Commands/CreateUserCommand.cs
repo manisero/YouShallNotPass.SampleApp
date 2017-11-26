@@ -19,15 +19,15 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
             {
                 Rules = new List<IValidationRule<CreateUserCommand>>
                 {
-                    new PropertyValidationRule<CreateUserCommand, UserEmailUniqueValidationInput>
+                    new MemberValidationRule<CreateUserCommand, UserEmailUniqueValidationInput>
                     {
-                        PropertyName = nameof(Email),
+                        MemberName = nameof(Email),
                         ValueGetter = x => new UserEmailUniqueValidationInput(x.Email),
                         ValueValidationRule = new UserEmailUniqueValidationRule()
                     },
-                    new PropertyValidationRule<CreateUserCommand, UserEmailContainsLastNameValidationInput>
+                    new MemberValidationRule<CreateUserCommand, UserEmailContainsLastNameValidationInput>
                     {
-                        PropertyName = nameof(Email),
+                        MemberName = nameof(Email),
                         ValueGetter = x => new UserEmailContainsLastNameValidationInput(x.Email, x.LastName),
                         ValueValidationRule = new UserEmailContainsLastNameValidationRule()
                     }
