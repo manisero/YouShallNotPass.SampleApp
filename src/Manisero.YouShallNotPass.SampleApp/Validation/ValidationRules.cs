@@ -13,8 +13,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
             Rules = new List<IValidationRule<string>>
             {
                 new NotNullValidationRule<string>(),
-                new EmailValidationRule(),
-                new UserEmailUniqueValidationRule()
+                new EmailValidationRule()
             }
         };
 

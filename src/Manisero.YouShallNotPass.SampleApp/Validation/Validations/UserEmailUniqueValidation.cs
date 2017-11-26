@@ -2,7 +2,25 @@
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations
 {
-    public class UserEmailUniqueValidationRule : IValidationRule<string, UserEmailUniqueValidationError>
+    public struct UserEmailUniqueValidationInput
+    {
+        public int? UserId { get; set; }
+        public string Email { get; set; }
+
+        public UserEmailUniqueValidationInput(string email)
+        {
+            UserId = null;
+            Email = email;
+        }
+
+        public UserEmailUniqueValidationInput(int userId, string email)
+        {
+            UserId = userId;
+            Email = email;
+        }
+    }
+
+    public class UserEmailUniqueValidationRule : IValidationRule<UserEmailUniqueValidationInput, UserEmailUniqueValidationError>
     {
     }
 
@@ -12,7 +30,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations
         public static readonly UserEmailUniqueValidationError Instance = new UserEmailUniqueValidationError();
     }
 
-    public class UserEmailUniqueValidator : IValidator<UserEmailUniqueValidationRule, string, UserEmailUniqueValidationError>
+    public class UserEmailUniqueValidator : IValidator<UserEmailUniqueValidationRule, UserEmailUniqueValidationInput, UserEmailUniqueValidationError>
     {
         private readonly IUserRepository _userRepository;
 
@@ -22,15 +40,16 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations
             _userRepository = userRepository;
         }
 
-        public UserEmailUniqueValidationError Validate(string value, UserEmailUniqueValidationRule rule, ValidationContext context)
+        public UserEmailUniqueValidationError Validate(
+            UserEmailUniqueValidationInput value,
+            UserEmailUniqueValidationRule rule,
+            ValidationContext context)
         {
-            // TODO: For UpdateUserCommand this will return error if command does not change Email. Fix this.
+            var user = _userRepository.GetByEmail(value.Email);
 
-            var user = _userRepository.GetByEmail(value);
-
-            return user != null
-                ? UserEmailUniqueValidationError.Instance
-                : null;
+            return user == null || value.UserId == user.UserId
+                ? null
+                : UserEmailUniqueValidationError.Instance;
         }
     }
 }

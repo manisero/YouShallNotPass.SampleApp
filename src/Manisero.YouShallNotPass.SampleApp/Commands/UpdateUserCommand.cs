@@ -2,6 +2,7 @@
 using Manisero.YouShallNotPass.SampleApp.Model;
 using Manisero.YouShallNotPass.SampleApp.Repositories;
 using Manisero.YouShallNotPass.SampleApp.Validation;
+using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
 using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Commands
@@ -21,6 +22,12 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
                 [nameof(Email)] = ValidationRules.UserEmailValidationRule,
                 [nameof(FirstName)] = ValidationRules.UserFirstNameValidationRule,
                 [nameof(LastName)] = ValidationRules.UserLastNameValidationRule
+            },
+            OverallRule = new PropertyValidationRule<UpdateUserCommand, UserEmailUniqueValidationInput>
+            {
+                PropertyName = nameof(Email),
+                ValueGetter = x => new UserEmailUniqueValidationInput(x.UserId, x.Email),
+                ValueValidationRule = new UserEmailUniqueValidationRule()
             }
         };
     }
