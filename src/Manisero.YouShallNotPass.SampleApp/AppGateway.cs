@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.SampleApp.Commands;
 using Manisero.YouShallNotPass.SampleApp.Queries;
 using Manisero.YouShallNotPass.SampleApp.Repositories;
 using Manisero.YouShallNotPass.SampleApp.Validation;
-using Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting;
 
 namespace Manisero.YouShallNotPass.SampleApp
 {
@@ -22,8 +19,7 @@ namespace Manisero.YouShallNotPass.SampleApp
     {
         public static readonly AppGateway Instance = new AppGateway();
 
-        private readonly IValidationEngine _validationEngine;
-        private readonly IValidationErrorFormattingEngine<IEnumerable<IValidationErrorMessage>> _validationErrorFormattingEngine;
+        private readonly IValidationFacade _validationFacade;
 
         private readonly IDictionary<object, object> _commandHandlers;
         private readonly IDictionary<object, object> _queryHandlers;
@@ -32,8 +28,7 @@ namespace Manisero.YouShallNotPass.SampleApp
         {
             var userRepository = new UserRepository();
 
-            _validationEngine = new ValidationEngineFactory().Create(userRepository);
-            _validationErrorFormattingEngine = new ValidationErrorFormattingEngineFactory().Create();
+            _validationFacade = new ValidationFacade(userRepository);
 
             _commandHandlers = new Dictionary<object, object>
             {
@@ -65,19 +60,11 @@ namespace Manisero.YouShallNotPass.SampleApp
 
         private CommandResult ValidateCommand<TCommand>(TCommand command)
         {
-            var validationResult = _validationEngine.TryValidate(command);
+            var error = _validationFacade.Validate(command);
 
-            if (validationResult == null || !validationResult.HasError())
-            {
-                return null;
-            }
-
-            var validationError = _validationErrorFormattingEngine.Format(validationResult);
-
-            return new CommandResult
-            {
-                ValidationError = validationError.Single()
-            };
+            return error != null
+                ? new CommandResult { ValidationError = error }
+                : null;
         }
 
         private CommandResult HandleCommand<TCommand>(TCommand command)
