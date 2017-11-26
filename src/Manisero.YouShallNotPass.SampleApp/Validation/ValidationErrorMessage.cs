@@ -1,4 +1,4 @@
-﻿namespace Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting
+﻿namespace Manisero.YouShallNotPass.SampleApp.Validation
 {
     public interface IValidationErrorMessage
     {

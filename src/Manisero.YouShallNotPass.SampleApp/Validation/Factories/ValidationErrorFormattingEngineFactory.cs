@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.SampleApp.Utils;
-using Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting;
 using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
+using Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn;
 using Manisero.YouShallNotPass.Validations;
 
-namespace Manisero.YouShallNotPass.SampleApp.Validation
+namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
 {
     public class ValidationErrorFormattingEngineFactory
     {

@@ -3,7 +3,7 @@ using System.Linq;
 using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.Validations;
 
-namespace Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting
+namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn
 {
     public class AllValidationErrorFormatter<TValue> : IValidationErrorFormatter<AllValidationRule<TValue>,
                                                                                  TValue,

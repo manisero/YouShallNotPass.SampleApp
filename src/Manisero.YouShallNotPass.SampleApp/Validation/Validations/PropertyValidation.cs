@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Manisero.YouShallNotPass.ErrorFormatting;
-using Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations
 {

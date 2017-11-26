@@ -2,7 +2,7 @@
 using Manisero.YouShallNotPass.SampleApp.Repositories;
 using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
 
-namespace Manisero.YouShallNotPass.SampleApp.Validation
+namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
 {
     public class ValidationEngineFactory
     {

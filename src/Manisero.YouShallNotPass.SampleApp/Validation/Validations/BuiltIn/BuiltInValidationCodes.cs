@@ -1,4 +1,4 @@
-﻿namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations
+﻿namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn
 {
     public static class BuiltInValidationCodes
     {

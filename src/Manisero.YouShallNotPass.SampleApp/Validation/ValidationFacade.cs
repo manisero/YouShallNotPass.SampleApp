@@ -1,8 +1,8 @@
 ﻿using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.SampleApp.Repositories;
-using Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting;
 using System.Collections.Generic;
 using System.Linq;
+using Manisero.YouShallNotPass.SampleApp.Validation.Factories;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation
 {

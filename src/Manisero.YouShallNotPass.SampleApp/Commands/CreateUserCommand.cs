@@ -2,6 +2,7 @@
 using Manisero.YouShallNotPass.SampleApp.Model;
 using Manisero.YouShallNotPass.SampleApp.Repositories;
 using Manisero.YouShallNotPass.SampleApp.Validation;
+using Manisero.YouShallNotPass.SampleApp.Validation.Rules;
 using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
 using Manisero.YouShallNotPass.Validations;
 

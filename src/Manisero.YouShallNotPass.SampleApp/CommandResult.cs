@@ -1,4 +1,4 @@
-﻿using Manisero.YouShallNotPass.SampleApp.Validation.ValidationErrorFormatting;
+﻿using Manisero.YouShallNotPass.SampleApp.Validation;
 
 namespace Manisero.YouShallNotPass.SampleApp
 {

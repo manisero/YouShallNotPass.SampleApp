@@ -2,7 +2,7 @@
 using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
 using Manisero.YouShallNotPass.Validations;
 
-namespace Manisero.YouShallNotPass.SampleApp.Validation
+namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
 {
     public class ValidationRules
     {
