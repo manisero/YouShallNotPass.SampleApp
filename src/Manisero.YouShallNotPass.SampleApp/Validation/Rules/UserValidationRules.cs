@@ -6,9 +6,9 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
 {
     public static class UserValidationRules
     {
-        public static readonly IValidationRule<int> UserIdValidationRule = new UserExistsValidationRule();
+        public static readonly IValidationRule<int> UserId = new UserExistsValidationRule();
 
-        public static readonly IValidationRule<string> EmailValidationRule = new AllValidation.Rule<string>
+        public static readonly IValidationRule<string> Email = new AllValidation.Rule<string>
         {
             Rules = new List<IValidationRule<string>>
             {
@@ -17,8 +17,8 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
             }
         };
 
-        public static readonly IValidationRule<string> FirstNameValidationRule = new NotNullNorWhiteSpaceValidation.Rule();
+        public static readonly IValidationRule<string> FirstName = new NotNullNorWhiteSpaceValidation.Rule();
 
-        public static readonly IValidationRule<string> LastNameValidationRule = new NotNullNorWhiteSpaceValidation.Rule();
+        public static readonly IValidationRule<string> LastName = new NotNullNorWhiteSpaceValidation.Rule();
     }
 }

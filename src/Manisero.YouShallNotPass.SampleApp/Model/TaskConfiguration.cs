@@ -30,7 +30,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Model
 
     public class Algorithm3Configuration
     {
-        /// <summary>If specified, should be between 0 and 1.</summary>
+        /// <summary>If specified, should be greater than or equal to 0.</summary>
         public int? Parameter { get; set; }
 
         /// <summary>If <see cref="Parameter"/> specified, should be greater than or equal to 0.</summary>
@@ -52,7 +52,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Model
     
     public class Algorithm4PhaseConfiguration
     {
-        /// <summary>Should be greater than 0.</summary>
+        /// <summary>Should be greater than or equal to 0.</summary>
         public int Parameter { get; set; }
     }
 }
