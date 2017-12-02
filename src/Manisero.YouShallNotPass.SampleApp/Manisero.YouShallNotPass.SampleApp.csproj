@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Manisero.YouShallNotPass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Manisero.YouShallNotPass.0.0.6\lib\net461\Manisero.YouShallNotPass.dll</HintPath>
+      <HintPath>..\packages\Manisero.YouShallNotPass.0.0.9\lib\net461\Manisero.YouShallNotPass.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,7 +56,6 @@
     <Compile Include="Utils\ObjectExtensions.cs" />
     <Compile Include="Validation\Factories\ValidationEngineFactory.cs" />
     <Compile Include="Validation\Validations\BuiltIn\AllValidation.cs" />
-    <Compile Include="Validation\Validations\BuiltIn\ComplexValidation.cs" />
     <Compile Include="Validation\Factories\ValidationErrorFormattingEngineFactory.cs" />
     <Compile Include="Validation\ValidationErrorMessage.cs" />
     <Compile Include="Validation\ValidationFacade.cs" />

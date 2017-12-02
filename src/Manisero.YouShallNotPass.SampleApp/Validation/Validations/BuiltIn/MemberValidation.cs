@@ -14,13 +14,13 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn
         public ICollection<IValidationErrorMessage> Errors { get; set; }
     }
 
-    public class MemberValidationErrorFormatter<TOwner, TValue> : IValidationErrorFormatter<MemberValidationRule<TOwner, TValue>,
+    public class MemberValidationErrorFormatter<TOwner, TValue> : IValidationErrorFormatter<MemberValidation.Rule<TOwner, TValue>,
                                                                                             TOwner,
-                                                                                            MemberValidationError,
+                                                                                            MemberValidation.Error,
                                                                                             IEnumerable<IValidationErrorMessage>>
     {
         public IEnumerable<IValidationErrorMessage> Format(
-            ValidationResult<MemberValidationRule<TOwner, TValue>, TOwner, MemberValidationError> validationResult,
+            ValidationResult<MemberValidation.Rule<TOwner, TValue>, TOwner, MemberValidation.Error> validationResult,
             ValidationErrorFormattingContext<IEnumerable<IValidationErrorMessage>> context)
         {
             yield return new MemberValidationErrorMessage

@@ -8,17 +8,17 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
     {
         public static readonly IValidationRule<int> UserIdValidationRule = new UserExistsValidationRule();
 
-        public static readonly IValidationRule<string> UserEmailValidationRule = new AllValidationRule<string>
+        public static readonly IValidationRule<string> UserEmailValidationRule = new AllValidation.Rule<string>
         {
             Rules = new List<IValidationRule<string>>
             {
-                new NotNullValidationRule<string>(),
-                new EmailValidationRule()
+                new NotNullValidation.Rule<string>(),
+                new EmailValidation.Rule()
             }
         };
 
-        public static readonly IValidationRule<string> UserFirstNameValidationRule = new NotNullNorWhiteSpaceValidationRule();
+        public static readonly IValidationRule<string> UserFirstNameValidationRule = new NotNullNorWhiteSpaceValidation.Rule();
 
-        public static readonly IValidationRule<string> UserLastNameValidationRule = new NotNullNorWhiteSpaceValidationRule();
+        public static readonly IValidationRule<string> UserLastNameValidationRule = new NotNullNorWhiteSpaceValidation.Rule();
     }
 }

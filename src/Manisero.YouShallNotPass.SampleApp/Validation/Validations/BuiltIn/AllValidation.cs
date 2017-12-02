@@ -5,13 +5,13 @@ using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn
 {
-    public class AllValidationErrorFormatter<TValue> : IValidationErrorFormatter<AllValidationRule<TValue>,
+    public class AllValidationErrorFormatter<TValue> : IValidationErrorFormatter<AllValidation.Rule<TValue>,
                                                                                  TValue,
-                                                                                 AllValidationError,
+                                                                                 AllValidation.Error,
                                                                                  IEnumerable<IValidationErrorMessage>>
     {
         public IEnumerable<IValidationErrorMessage> Format(
-            ValidationResult<AllValidationRule<TValue>, TValue, AllValidationError> validationResult,
+            ValidationResult<AllValidation.Rule<TValue>, TValue, AllValidation.Error> validationResult,
             ValidationErrorFormattingContext<IEnumerable<IValidationErrorMessage>> context)
         {
             return validationResult.Error

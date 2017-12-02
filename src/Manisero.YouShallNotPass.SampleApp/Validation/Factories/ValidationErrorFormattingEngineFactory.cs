@@ -14,11 +14,10 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
             return new ValidationErrorFormattingEngineBuilder<IEnumerable<IValidationErrorMessage>>()
                 // Built in
                 .RegisterFullGenericFormatter(typeof(AllValidationErrorFormatter<>))
-                .RegisterFullGenericFormatter(typeof(ComplexValidationErrorFormatter<>))
-                .RegisterErrorMessage<EmailValidationError>(BuiltInValidationCodes.Email)
+                .RegisterErrorMessage<EmailValidation.Error>(BuiltInValidationCodes.Email)
                 .RegisterFullGenericFormatter(typeof(MemberValidationErrorFormatter<,>))
-                .RegisterErrorMessage<NotNullValidationError>(BuiltInValidationCodes.NotNull)
-                .RegisterErrorMessage<NotNullNorWhiteSpaceValidationError>(BuiltInValidationCodes.NotNullNorWhiteSpace)
+                .RegisterErrorMessage<NotNullValidation.Error>(BuiltInValidationCodes.NotNull)
+                .RegisterErrorMessage<NotNullNorWhiteSpaceValidation.Error>(BuiltInValidationCodes.NotNullNorWhiteSpace)
                 // Custom specific
                 .RegisterErrorMessage<UserEmailContainsLastNameValidationError>(UserEmailContainsLastNameValidationError.Code)
                 .RegisterErrorMessage<UserEmailUniqueValidationError>(UserEmailUniqueValidationError.Code)
