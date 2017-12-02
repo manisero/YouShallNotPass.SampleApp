@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandResult.cs" />
+    <Compile Include="Commands\RunTaskCommand.cs" />
     <Compile Include="Commands\UpdateUserCommand.cs" />
     <Compile Include="Commands\CreateUserCommand.cs" />
     <Compile Include="ICommandHandler.cs" />

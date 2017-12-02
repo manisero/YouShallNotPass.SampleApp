@@ -33,7 +33,8 @@ namespace Manisero.YouShallNotPass.SampleApp
             _commandHandlers = new Dictionary<object, object>
             {
                 [typeof(CreateUserCommand)] = new CreateUserCommandHandler(userRepository),
-                [typeof(UpdateUserCommand)] = new UpdateUserCommandHandler(userRepository)
+                [typeof(UpdateUserCommand)] = new UpdateUserCommandHandler(userRepository),
+                [typeof(RunTaskCommand)] = new RunTaskCommandHandler()
             };
 
             _queryHandlers = new Dictionary<object, object>
