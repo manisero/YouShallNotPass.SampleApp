@@ -8,7 +8,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
 {
     public interface IValidationFacade
     {
-        IValidationErrorMessage Validate<TValue>(TValue value);
+        ICollection<IValidationErrorMessage> Validate<TValue>(TValue value);
     }
 
     public class ValidationFacade : IValidationFacade
@@ -23,7 +23,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
             _validationErrorFormattingEngine = new ValidationErrorFormattingEngineFactory().Create();
         }
 
-        public IValidationErrorMessage Validate<TValue>(TValue value)
+        public ICollection<IValidationErrorMessage> Validate<TValue>(TValue value)
         {
             var validationResult = _validationEngine.TryValidate(value);
 
@@ -34,7 +34,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
 
             var validationError = _validationErrorFormattingEngine.Format(validationResult);
 
-            return validationError.Single();
+            return validationError.ToArray();
         }
     }
 }
