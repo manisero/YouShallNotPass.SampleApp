@@ -16,7 +16,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
                          x => x.Algorithm2Parameter,
                          b2 => b2.All(
                              b3 => b3.NotNull(),
-                             b3 => b3.Map(x => x.Value, _ => Algorithm2Parameter)))
+                             b3 => b3.Map(x => x.Value, _ => Algorithm2ParameterRule)))
                      /* TODO: else */),
                  b => b.If(
                      x => x.Algorithm == Algorithm.Algorithm3,
@@ -24,7 +24,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
                          x => x.Algorithm3Configuration,
                          b2 => b2.All(
                              b3 => b3.NotNull(),
-                             _ => Algorithm3Configuration))
+                             _ => Algorithm3ConfigurationRule))
                      /* TODO: else */),
                  b => b.If(
                      x => x.Algorithm == Algorithm.Algorithm4,
@@ -32,16 +32,16 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
                          x => x.Algorithm4Configuration,
                          b2 => b2.All(
                              b3 => b3.NotNull(),
-                             _ => Algorithm4Configuration))
+                             _ => Algorithm4ConfigurationRule))
                      /* TODO: else */));
 
         // Algorithm2
 
-        public static readonly IValidationRule<double> Algorithm2Parameter = new ValidationRuleBuilder<double>().Min(0d);
+        public static readonly IValidationRule<double> Algorithm2ParameterRule = new ValidationRuleBuilder<double>().Min(0d);
 
         // Algorithm3
 
-        public static readonly IValidationRule<Algorithm3Configuration> Algorithm3Configuration = new ValidationRuleBuilder<Algorithm3Configuration>()
+        public static readonly IValidationRule<Algorithm3Configuration> Algorithm3ConfigurationRule = new ValidationRuleBuilder<Algorithm3Configuration>()
             .All(b => b.Member(
                      x => x.Parameter,
                      b1 => b1.Map(x => x.Value, b2 => b2.Min(0))),
@@ -55,16 +55,16 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
 
         // Algorithm4
 
-        public static readonly IValidationRule<Algorithm4Configuration> Algorithm4Configuration = new ValidationRuleBuilder<Algorithm4Configuration>()
+        public static readonly IValidationRule<Algorithm4Configuration> Algorithm4ConfigurationRule = new ValidationRuleBuilder<Algorithm4Configuration>()
             .All(b => b.Member(x => x.PhasesNumber, b1 => b1.Min(1)),
-                 _ => new Algorithm4ConfigurationPhasesKeysValidation.Rule(),
+                 _ => new Algorithm4ConfigurationPhasesKeysValidation.Rule(), // TODO: Should be Member
                  b => b.Member(
                      x => x.Phases,
                      b1 => b1.Map(
                          x => x.Values.AsEnumerable(),
-                         b2 => b2.Collection(_ => Algorithm4PhaseConfiguration))));
+                         b2 => b2.Collection(_ => Algorithm4PhaseConfigurationRule))));
 
-        public static readonly IValidationRule<Algorithm4PhaseConfiguration> Algorithm4PhaseConfiguration = new ValidationRuleBuilder<Algorithm4PhaseConfiguration>()
+        public static readonly IValidationRule<Algorithm4PhaseConfiguration> Algorithm4PhaseConfigurationRule = new ValidationRuleBuilder<Algorithm4PhaseConfiguration>()
             .Member(x => x.Parameter, b => b.Min(0));
     }
 }
