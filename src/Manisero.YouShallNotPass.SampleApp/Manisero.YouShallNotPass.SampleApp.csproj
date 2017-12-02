@@ -58,6 +58,7 @@
     <Compile Include="Utils\ObjectExtensions.cs" />
     <Compile Include="Validation\Factories\ValidationEngineFactory.cs" />
     <Compile Include="Validation\Rules\TaskConfigurationValidationRules.cs" />
+    <Compile Include="Validation\Validations\Algorithm4ConfigurationPhasesKeysValidation.cs" />
     <Compile Include="Validation\Validations\BuiltIn\AllValidation.cs" />
     <Compile Include="Validation\Factories\ValidationErrorFormattingEngineFactory.cs" />
     <Compile Include="Validation\ValidationErrorMessage.cs" />
@@ -65,6 +66,9 @@
     <Compile Include="Validation\Rules\UserValidationRules.cs" />
     <Compile Include="Validation\Validations\BuiltIn\BuiltInValidationCodes.cs" />
     <Compile Include="Validation\Validations\BuiltIn\MemberValidation.cs" />
+    <Compile Include="Validation\Validations\Generic\BetweenValidation.cs" />
+    <Compile Include="Validation\Validations\Generic\IsEnumValueValidation.cs" />
+    <Compile Include="Validation\Validations\Generic\NullValidation.cs" />
     <Compile Include="Validation\Validations\UserEmailContainsLastNameValidation.cs" />
     <Compile Include="Validation\Validations\UserEmailUniqueValidation.cs" />
     <Compile Include="Validation\Validations\UserExistsValidation.cs" />

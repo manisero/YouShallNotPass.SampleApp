@@ -1,10 +1,16 @@
-﻿using Manisero.YouShallNotPass.SampleApp.Model;
+﻿using System.Linq;
+using Manisero.YouShallNotPass.SampleApp.Model;
+using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
+using Manisero.YouShallNotPass.SampleApp.Validation.Validations.Generic;
 using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
 {
     public static class TaskConfigurationValidationRules
     {
+        public static readonly IValidationRule<TaskConfiguration> TaskConfiguration = new ValidationRuleBuilder<TaskConfiguration>()
+            .All(b => b.Member(x => x.Algorithm, b1 => b1.IsEnumValue()));
+
         // Algorithm2
 
         public static readonly IValidationRule<double> Algorithm2Parameter = new ValidationRuleBuilder<double>().Min(0d);
@@ -26,16 +32,15 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
         // Algorithm4
 
         public static readonly IValidationRule<Algorithm4Configuration> Algorithm4Configuration = new ValidationRuleBuilder<Algorithm4Configuration>()
-            .All(
-                b => b.Member(x => x.PhasesNumber, b1 => b1.Min(1)),
-                b => b.Member(
-                    nameof(Model.Algorithm4Configuration.Phases),
-                    x => new { x.PhasesNumber, x.Phases.Keys },
-                    _ => null));
+            .All(b => b.Member(x => x.PhasesNumber, b1 => b1.Min(1)),
+                 _ => new Algorithm4ConfigurationPhasesKeysValidation.Rule(),
+                 b => b.Member(
+                     x => x.Phases,
+                     b1 => b1.Map(
+                         x => x.Values.AsEnumerable(),
+                         b2 => b2.Collection(_ => Algorithm4PhaseConfiguration))));
 
         public static readonly IValidationRule<Algorithm4PhaseConfiguration> Algorithm4PhaseConfiguration = new ValidationRuleBuilder<Algorithm4PhaseConfiguration>()
             .Member(x => x.Parameter, b => b.Min(0));
-
-
     }
 }

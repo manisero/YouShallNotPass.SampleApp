@@ -4,7 +4,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Model
 {
     public class TaskConfiguration
     {
-        /// <summary>Corresponding Algorithm*Configuration cannot be null.</summary>
+        /// <summary>Corresponding Algorithm*Configuration cannot be null. Other configurations should be null.</summary>
         public Algorithm Algorithm { get; set; }
 
         /// <summary>Should be greater than or equal to 0.</summary>
@@ -44,7 +44,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Model
 
         /// <summary>
         /// Phase number -> phase configuration.
-        /// Key should be between 1 and <see cref="PhasesNumber"/>.
+        /// If not null, key should be between 1 and <see cref="PhasesNumber"/>.
         /// (Not all phases have to be configured - unconfigured phases will get some default configuration.)
         /// </summary>
         public Dictionary<int, Algorithm4PhaseConfiguration> Phases { get; set; }
