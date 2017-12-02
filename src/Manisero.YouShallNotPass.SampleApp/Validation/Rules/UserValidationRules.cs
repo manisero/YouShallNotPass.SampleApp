@@ -6,7 +6,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
 {
     public static class UserValidationRules
     {
-        public static readonly IValidationRule<int> UserIdRule = new UserExistsValidationRule();
+        public static readonly IValidationRule<int> UserIdRule = new UserExistsValidation.Rule();
 
         public static readonly IValidationRule<string> EmailRule = new AllValidation.Rule<string>
         {

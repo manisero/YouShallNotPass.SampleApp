@@ -19,9 +19,9 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
                 .RegisterErrorMessage<NotNullValidation.Error>(BuiltInValidationCodes.NotNull)
                 .RegisterErrorMessage<NotNullNorWhiteSpaceValidation.Error>(BuiltInValidationCodes.NotNullNorWhiteSpace)
                 // Custom specific
-                .RegisterErrorMessage<UserEmailContainsLastNameValidationError>(UserEmailContainsLastNameValidationError.Code)
-                .RegisterErrorMessage<UserEmailUniqueValidationError>(UserEmailUniqueValidationError.Code)
-                .RegisterErrorMessage<UserExistsValidationError>(UserExistsValidationError.Code)
+                .RegisterErrorMessage<UserEmailContainsLastNameValidation.Error>(UserEmailContainsLastNameValidation.Code)
+                .RegisterErrorMessage<UserEmailUniqueValidation.Error>(UserEmailUniqueValidation.Code)
+                .RegisterErrorMessage<UserExistsValidation.Error>(UserExistsValidation.Code)
                 .Build();
         }
     }

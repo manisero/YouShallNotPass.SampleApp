@@ -16,12 +16,12 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
         public static readonly IValidationRule<UpdateUserCommand> ValidationRule = new ValidationRuleBuilder<UpdateUserCommand>()
             .All(b => b.Member(
                      nameof(Email),
-                     x => new UserEmailUniqueValidationInput(x.UserId, x.Email),
-                     _ => new UserEmailUniqueValidationRule()),
+                     x => new UserEmailUniqueValidation.Input(x.UserId, x.Email),
+                     _ => new UserEmailUniqueValidation.Rule()),
                  b => b.Member(
                      nameof(Email),
-                     x => new UserEmailContainsLastNameValidationInput(x.Email, x.LastName),
-                     _ => new UserEmailContainsLastNameValidationRule()),
+                     x => new UserEmailContainsLastNameValidation.Input(x.Email, x.LastName),
+                     _ => new UserEmailContainsLastNameValidation.Rule()),
                  b => b.Member(x => x.UserId, UserValidationRules.UserIdRule),
                  b => b.Member(x => x.Email, UserValidationRules.EmailRule),
                  b => b.Member(x => x.FirstName, UserValidationRules.FirstNameRule),

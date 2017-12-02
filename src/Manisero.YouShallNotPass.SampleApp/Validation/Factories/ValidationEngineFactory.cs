@@ -29,14 +29,14 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
             // Specific
             builder.RegisterFullValidator(new Algorithm4ConfigurationPhasesKeysValidation.Validator());
 
-            builder.RegisterValueOnlyBoolValidatorFunc<UserEmailContainsLastNameValidationRule,
-                                                       UserEmailContainsLastNameValidationInput, 
-                                                       UserEmailContainsLastNameValidationError>(
-                                                           UserEmailContainsLastNameValidator.Func, 
-                                                           UserEmailContainsLastNameValidationError.Instance);
+            builder.RegisterValueOnlyBoolValidatorFunc<UserEmailContainsLastNameValidation.Rule,
+                                                       UserEmailContainsLastNameValidation.Input,
+                                                       UserEmailContainsLastNameValidation.Error>(
+                                                       UserEmailContainsLastNameValidation.Validator,
+                                                       UserEmailContainsLastNameValidation.Error.Instance);
 
-            builder.RegisterFullValidator(new UserEmailUniqueValidator(userRepository));
-            builder.RegisterFullValidator(new UserExistsValidator(userRepository));
+            builder.RegisterFullValidator(new UserEmailUniqueValidation.Validator(userRepository));
+            builder.RegisterFullValidator(new UserExistsValidation.Validator(userRepository));
         }
 
         private void RegisterRules(IValidationEngineBuilder builder)
