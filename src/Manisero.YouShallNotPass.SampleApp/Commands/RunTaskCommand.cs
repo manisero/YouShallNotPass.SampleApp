@@ -1,13 +1,10 @@
-﻿namespace Manisero.YouShallNotPass.SampleApp.Commands
+﻿using Manisero.YouShallNotPass.SampleApp.Model;
+
+namespace Manisero.YouShallNotPass.SampleApp.Commands
 {
     public class RunTaskCommand : ICommand
     {
         public TaskConfiguration Configuration { get; set; }
-    }
-
-    public class TaskConfiguration
-    {
-
     }
 
     public class RunTaskCommandHandler : ICommandHandler<RunTaskCommand>
