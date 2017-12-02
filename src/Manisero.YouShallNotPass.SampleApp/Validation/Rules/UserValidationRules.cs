@@ -4,11 +4,11 @@ using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
 {
-    public class ValidationRules
+    public static class UserValidationRules
     {
         public static readonly IValidationRule<int> UserIdValidationRule = new UserExistsValidationRule();
 
-        public static readonly IValidationRule<string> UserEmailValidationRule = new AllValidation.Rule<string>
+        public static readonly IValidationRule<string> EmailValidationRule = new AllValidation.Rule<string>
         {
             Rules = new List<IValidationRule<string>>
             {
@@ -17,8 +17,8 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
             }
         };
 
-        public static readonly IValidationRule<string> UserFirstNameValidationRule = new NotNullNorWhiteSpaceValidation.Rule();
+        public static readonly IValidationRule<string> FirstNameValidationRule = new NotNullNorWhiteSpaceValidation.Rule();
 
-        public static readonly IValidationRule<string> UserLastNameValidationRule = new NotNullNorWhiteSpaceValidation.Rule();
+        public static readonly IValidationRule<string> LastNameValidationRule = new NotNullNorWhiteSpaceValidation.Rule();
     }
 }

@@ -16,7 +16,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Model
     public enum Algorithm
     {
         /// <summary>No parameters.</summary>
-        Algorithm1,
+        Algorithm1 = 1,
 
         /// <summary>Single parameter.</summary>
         Algorithm2,

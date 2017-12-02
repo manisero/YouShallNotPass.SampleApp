@@ -21,9 +21,9 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
                      nameof(Email),
                      x => new UserEmailContainsLastNameValidationInput(x.Email, x.LastName),
                      new UserEmailContainsLastNameValidationRule()),
-                 b => b.Member(x => x.Email, ValidationRules.UserEmailValidationRule),
-                 b => b.Member(x => x.FirstName, ValidationRules.UserFirstNameValidationRule),
-                 b => b.Member(x => x.LastName, ValidationRules.UserLastNameValidationRule));
+                 b => b.Member(x => x.Email, UserValidationRules.EmailValidationRule),
+                 b => b.Member(x => x.FirstName, UserValidationRules.FirstNameValidationRule),
+                 b => b.Member(x => x.LastName, UserValidationRules.LastNameValidationRule));
     }
 
     public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>

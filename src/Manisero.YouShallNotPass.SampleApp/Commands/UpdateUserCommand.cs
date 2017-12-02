@@ -22,10 +22,10 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
                      nameof(Email),
                      x => new UserEmailContainsLastNameValidationInput(x.Email, x.LastName),
                      _ => new UserEmailContainsLastNameValidationRule()),
-                 b => b.Member(x => x.UserId, ValidationRules.UserIdValidationRule),
-                 b => b.Member(x => x.Email, ValidationRules.UserEmailValidationRule),
-                 b => b.Member(x => x.FirstName, ValidationRules.UserFirstNameValidationRule),
-                 b => b.Member(x => x.LastName, ValidationRules.UserLastNameValidationRule));
+                 b => b.Member(x => x.UserId, UserValidationRules.UserIdValidationRule),
+                 b => b.Member(x => x.Email, UserValidationRules.EmailValidationRule),
+                 b => b.Member(x => x.FirstName, UserValidationRules.FirstNameValidationRule),
+                 b => b.Member(x => x.LastName, UserValidationRules.LastNameValidationRule));
     }
 
     public class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand>
