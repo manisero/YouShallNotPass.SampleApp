@@ -13,7 +13,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public static IValidationRule<UpdateUserCommand> ValidationRule = new ValidationRuleBuilder<UpdateUserCommand>()
+        public static readonly IValidationRule<UpdateUserCommand> ValidationRule = new ValidationRuleBuilder<UpdateUserCommand>()
             .All(b => b.Member(
                      nameof(Email),
                      x => new UserEmailUniqueValidationInput(x.UserId, x.Email),

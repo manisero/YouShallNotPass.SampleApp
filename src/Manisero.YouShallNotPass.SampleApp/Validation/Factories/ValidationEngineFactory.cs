@@ -1,6 +1,7 @@
 ﻿using Manisero.YouShallNotPass.SampleApp.Commands;
 using Manisero.YouShallNotPass.SampleApp.Repositories;
 using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
+using Manisero.YouShallNotPass.SampleApp.Validation.Validations.Generic;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
 {
@@ -20,6 +21,14 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
             IValidationEngineBuilder builder,
             IUserRepository userRepository)
         {
+            // Generic
+            builder.RegisterFullGenericValidator(typeof(BetweenValidation.Validator<>));
+            builder.RegisterFullGenericValidator(typeof(IsEnumValueValidation.Validator<>));
+            builder.RegisterFullGenericValidator(typeof(NullValidation.Validator<>));
+
+            // Specific
+            builder.RegisterFullValidator(new Algorithm4ConfigurationPhasesKeysValidation.Validator());
+
             builder.RegisterValueOnlyBoolValidatorFunc<UserEmailContainsLastNameValidationRule,
                                                        UserEmailContainsLastNameValidationInput, 
                                                        UserEmailContainsLastNameValidationError>(
@@ -34,6 +43,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
         {
             builder.RegisterValidationRule(typeof(CreateUserCommand), CreateUserCommand.ValidationRule);
             builder.RegisterValidationRule(typeof(UpdateUserCommand), UpdateUserCommand.ValidationRule);
+            builder.RegisterValidationRule(typeof(RunTaskCommand), RunTaskCommand.ValidationRule);
         }
     }
 }

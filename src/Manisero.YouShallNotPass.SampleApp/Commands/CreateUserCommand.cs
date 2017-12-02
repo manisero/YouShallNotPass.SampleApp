@@ -12,7 +12,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public static IValidationRule<CreateUserCommand> ValidationRule = new ValidationRuleBuilder<CreateUserCommand>()
+        public static readonly IValidationRule<CreateUserCommand> ValidationRule = new ValidationRuleBuilder<CreateUserCommand>()
             .All(b => b.Member(
                      nameof(Email),
                      x => new UserEmailUniqueValidationInput(x.Email),
