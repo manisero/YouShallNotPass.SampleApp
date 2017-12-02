@@ -16,24 +16,24 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
                          x => x.Algorithm2Parameter,
                          b2 => b2.All(
                              b3 => b3.NotNull(),
-                             b3 => b3.Map(x => x.Value, _ => Algorithm2ParameterRule)))
-                     /* TODO: else */),
+                             b3 => b3.Map(x => x.Value, _ => Algorithm2ParameterRule))),
+                     b1 => b1.Member(x => x.Algorithm2Parameter, b2 => b2.Null())),
                  b => b.If(
                      x => x.Algorithm == Algorithm.Algorithm3,
                      b1 => b1.Member(
                          x => x.Algorithm3Configuration,
                          b2 => b2.All(
                              b3 => b3.NotNull(),
-                             _ => Algorithm3ConfigurationRule))
-                     /* TODO: else */),
+                             _ => Algorithm3ConfigurationRule)),
+                     b1 => b1.Member(x => x.Algorithm3Configuration, b2 => b2.Null())),
                  b => b.If(
                      x => x.Algorithm == Algorithm.Algorithm4,
                      b1 => b1.Member(
                          x => x.Algorithm4Configuration,
                          b2 => b2.All(
                              b3 => b3.NotNull(),
-                             _ => Algorithm4ConfigurationRule))
-                     /* TODO: else */));
+                             _ => Algorithm4ConfigurationRule)),
+                     b1 => b1.Member(x => x.Algorithm4Configuration, b2 => b2.Null())));
 
         // Algorithm2
 
