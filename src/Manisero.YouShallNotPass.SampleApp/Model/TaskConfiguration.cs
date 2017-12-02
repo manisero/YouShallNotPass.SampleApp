@@ -39,7 +39,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Model
 
     public class Algorithm4Configuration
     {
-        /// <summary>Number of task phases.</summary>
+        /// <summary>Should be greater than 0.</summary>
         public int PhasesNumber { get; set; }
 
         /// <summary>
