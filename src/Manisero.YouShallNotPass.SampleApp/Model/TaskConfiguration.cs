@@ -7,9 +7,18 @@ namespace Manisero.YouShallNotPass.SampleApp.Model
         /// <summary>Corresponding Algorithm*Configuration cannot be null. Other configurations should be null.</summary>
         public Algorithm Algorithm { get; set; }
 
-        /// <summary>Should be greater than or equal to 0.</summary>
+        /// <summary>
+        /// If Algorithm == Algorithm2:
+        ///   - should not be null,
+        ///   - should be greater than or equal to 0.
+        /// Else, should be null;
+        /// </summary>
         public double? Algorithm2Parameter { get; set; }
+
+        /// <summary>If Algorithm == Algorithm3, should not be null. Else, should be null.</summary>
         public Algorithm3Configuration Algorithm3Configuration { get; set; }
+
+        /// <summary>If Algorithm == Algorithm4, should not be null. Else, should be null./// </summary>
         public Algorithm4Configuration Algorithm4Configuration { get; set; }
     }
 

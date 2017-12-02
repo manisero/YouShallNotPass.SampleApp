@@ -9,7 +9,31 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
     public static class TaskConfigurationValidationRules
     {
         public static readonly IValidationRule<TaskConfiguration> TaskConfiguration = new ValidationRuleBuilder<TaskConfiguration>()
-            .All(b => b.Member(x => x.Algorithm, b1 => b1.IsEnumValue()));
+            .All(b => b.Member(x => x.Algorithm, b1 => b1.IsEnumValue()),
+                 b => b.If(
+                     x => x.Algorithm == Algorithm.Algorithm2,
+                     b1 => b1.Member(
+                         x => x.Algorithm2Parameter,
+                         b2 => b2.All(
+                             b3 => b3.NotNull(),
+                             b3 => b3.Map(x => x.Value, _ => Algorithm2Parameter)))
+                     /* TODO: else */),
+                 b => b.If(
+                     x => x.Algorithm == Algorithm.Algorithm3,
+                     b1 => b1.Member(
+                         x => x.Algorithm3Configuration,
+                         b2 => b2.All(
+                             b3 => b3.NotNull(),
+                             _ => Algorithm3Configuration))
+                     /* TODO: else */),
+                 b => b.If(
+                     x => x.Algorithm == Algorithm.Algorithm4,
+                     b1 => b1.Member(
+                         x => x.Algorithm4Configuration,
+                         b2 => b2.All(
+                             b3 => b3.NotNull(),
+                             _ => Algorithm4Configuration))
+                     /* TODO: else */));
 
         // Algorithm2
 
