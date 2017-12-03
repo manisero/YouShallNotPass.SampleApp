@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Manisero.YouShallNotPass.ErrorFormatting;
+using Manisero.YouShallNotPass.SampleApp.Utils;
 using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn
@@ -23,11 +24,11 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn
             ValidationResult<MemberValidation.Rule<TOwner, TValue>, TOwner, MemberValidation.Error> validationResult,
             ValidationErrorFormattingContext<IEnumerable<IValidationErrorMessage>> context)
         {
-            yield return new MemberValidationErrorMessage
+            return new MemberValidationErrorMessage
             {
                 MemberName = validationResult.Rule.MemberName,
                 Errors = context.Engine.Format(validationResult.Error.Violation).ToArray()
-            };
+            }.AsEnumerable();
         }
     }
 }

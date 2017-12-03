@@ -15,9 +15,12 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
             return new ValidationErrorFormattingEngineBuilder<IEnumerable<IValidationErrorMessage>>()
                 // Built in
                 .RegisterErrorOnlyFormatter(new AllValidationErrorFormatter())
+                .RegisterErrorOnlyFormatter(new CollectionValidationErrorFormatter())
                 .RegisterErrorMessage<EmailValidation.Error>(BuiltInValidationCodes.Email)
                 .RegisterErrorOnlyFormatter(new IfValidationErrorFormatter())
+                .RegisterErrorOnlyFormatter(new MapValidationErrorFormatter())
                 .RegisterFullGenericFormatter(typeof(MemberValidationErrorFormatter<,>))
+                .RegisterFullGenericFormatter(typeof(MinValidationErrorFormatter<>))
                 .RegisterErrorMessage<NotNullValidation.Error>(BuiltInValidationCodes.NotNull)
                 .RegisterErrorMessage<NotNullNorWhiteSpaceValidation.Error>(BuiltInValidationCodes.NotNullNorWhiteSpace)
                 // Custom (generic)

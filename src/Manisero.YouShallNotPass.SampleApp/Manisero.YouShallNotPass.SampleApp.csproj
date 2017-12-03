@@ -59,6 +59,9 @@
     <Compile Include="Validation\Factories\ValidationEngineFactory.cs" />
     <Compile Include="Validation\Rules\TaskConfigurationValidationRules.cs" />
     <Compile Include="Validation\Validations\Algorithm4ConfigurationPhasesKeysValidation.cs" />
+    <Compile Include="Validation\Validations\BuiltIn\CollectionValidation.cs" />
+    <Compile Include="Validation\Validations\BuiltIn\MinValidation.cs" />
+    <Compile Include="Validation\Validations\BuiltIn\MapValidation.cs" />
     <Compile Include="Validation\Validations\BuiltIn\AllValidation.cs" />
     <Compile Include="Validation\Factories\ValidationErrorFormattingEngineFactory.cs" />
     <Compile Include="Validation\ValidationErrorMessage.cs" />
