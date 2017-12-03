@@ -28,6 +28,9 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
 
         // Algorithm4
 
+        public static readonly IValidationRule<Algorithm4PhaseConfiguration> Algorithm4PhaseConfigurationRule = new ValidationRuleBuilder<Algorithm4PhaseConfiguration>()
+            .Member(x => x.Parameter, b => b.Min(0));
+
         public static readonly IValidationRule<Algorithm4Configuration> Algorithm4ConfigurationRule = new ValidationRuleBuilder<Algorithm4Configuration>()
             .All(b => b.Member(x => x.PhasesNumber, b1 => b1.Min(1)),
                  _ => new Algorithm4ConfigurationPhasesKeysValidation.Rule(), // TODO: Should be Member
@@ -36,9 +39,6 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
                      b1 => b1.Map(
                          x => x.Values.AsEnumerable(),
                          b2 => b2.Collection(_ => Algorithm4PhaseConfigurationRule))));
-
-        public static readonly IValidationRule<Algorithm4PhaseConfiguration> Algorithm4PhaseConfigurationRule = new ValidationRuleBuilder<Algorithm4PhaseConfiguration>()
-            .Member(x => x.Parameter, b => b.Min(0));
 
         // TaskConfiguration
 
