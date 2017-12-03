@@ -12,26 +12,30 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
     {
         public IValidationErrorFormattingEngine<IEnumerable<IValidationErrorMessage>> Create()
         {
-            return new ValidationErrorFormattingEngineBuilder<IEnumerable<IValidationErrorMessage>>()
-                // Built in
-                .RegisterErrorOnlyFormatter(new AllValidationErrorFormatter())
-                .RegisterErrorOnlyFormatter(new CollectionValidationErrorFormatter())
-                .RegisterErrorMessage<EmailValidation.Error>(BuiltInValidationCodes.Email)
-                .RegisterErrorOnlyFormatter(new IfValidationErrorFormatter())
-                .RegisterErrorOnlyFormatter(new MapValidationErrorFormatter())
-                .RegisterFullGenericFormatter(typeof(MemberValidationErrorFormatter<,>))
-                .RegisterFullGenericFormatter(typeof(MinValidationErrorFormatter<>))
-                .RegisterErrorMessage<NotNullValidation.Error>(BuiltInValidationCodes.NotNull)
-                .RegisterErrorMessage<NotNullNorWhiteSpaceValidation.Error>(BuiltInValidationCodes.NotNullNorWhiteSpace)
-                // Custom (generic)
-                .RegisterErrorMessage<BetweenValidation.Error>(BetweenValidation.Code)
-                .RegisterErrorMessage<IsEnumValueValidation.Error>(IsEnumValueValidation.Code)
-                .RegisterErrorMessage<NullValidation.Error>(NullValidation.Code)
-                // Custom (specific)
-                .RegisterErrorMessage<UserEmailContainsLastNameValidation.Error>(UserEmailContainsLastNameValidation.Code)
-                .RegisterErrorMessage<UserEmailUniqueValidation.Error>(UserEmailUniqueValidation.Code)
-                .RegisterErrorMessage<UserExistsValidation.Error>(UserExistsValidation.Code)
-                .Build();
+            var builder = new ValidationErrorFormattingEngineBuilder<IEnumerable<IValidationErrorMessage>>();
+
+            // Built in
+            builder.RegisterErrorOnlyFormatter(new AllValidationErrorFormatter());
+            builder.RegisterErrorOnlyFormatter(new CollectionValidationErrorFormatter());
+            builder.RegisterErrorMessage<EmailValidation.Error>(BuiltInValidationCodes.Email);
+            builder.RegisterErrorOnlyFormatter(new IfValidationErrorFormatter());
+            builder.RegisterErrorOnlyFormatter(new MapValidationErrorFormatter());
+            builder.RegisterFullGenericFormatter(typeof(MemberValidationErrorFormatter<,>));
+            builder.RegisterErrorOnlyGenericFormatter(typeof(MinValidationErrorFormatter<>));
+            builder.RegisterErrorMessage<NotNullValidation.Error>(BuiltInValidationCodes.NotNull);
+            builder.RegisterErrorMessage<NotNullNorWhiteSpaceValidation.Error>(BuiltInValidationCodes.NotNullNorWhiteSpace);
+
+            // Custom (generic)
+            builder.RegisterErrorMessage<BetweenValidation.Error>(BetweenValidation.Code);
+            builder.RegisterErrorMessage<IsEnumValueValidation.Error>(IsEnumValueValidation.Code);
+            builder.RegisterErrorMessage<NullValidation.Error>(NullValidation.Code);
+
+            // Custom (specific)
+            builder.RegisterErrorMessage<UserEmailContainsLastNameValidation.Error>(UserEmailContainsLastNameValidation.Code);
+            builder.RegisterErrorMessage<UserEmailUniqueValidation.Error>(UserEmailUniqueValidation.Code);
+            builder.RegisterErrorMessage<UserExistsValidation.Error>(UserExistsValidation.Code);
+
+            return builder.Build();
         }
     }
 

@@ -14,7 +14,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn
     }
 
     public class CollectionValidationErrorFormatter : IValidationErrorFormatter<CollectionValidation.Error,
-                                                                                       IEnumerable<IValidationErrorMessage>>
+                                                                                IEnumerable<IValidationErrorMessage>>
     {
         public IEnumerable<IValidationErrorMessage> Format(
             CollectionValidation.Error error,
