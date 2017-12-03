@@ -9,10 +9,11 @@ namespace Manisero.YouShallNotPass.SampleApp.Commands
         public TaskConfiguration Configuration { get; set; }
 
         public static readonly IValidationRule<RunTaskCommand> ValidationRule = new ValidationRuleBuilder<RunTaskCommand>()
-            .Member(x => x.Configuration,
-            b => b.All(
-                b1 => b1.NotNull(),
-                _ => TaskConfigurationValidationRules.TaskConfiguration));
+            .Member(
+                x => x.Configuration,
+                b => b.All(
+                    b1 => b1.NotNull(),
+                    _ => TaskConfigurationValidationRules.TaskConfiguration));
     }
 
     public class RunTaskCommandHandler : ICommandHandler<RunTaskCommand>
