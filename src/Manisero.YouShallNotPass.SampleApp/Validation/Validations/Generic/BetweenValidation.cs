@@ -4,6 +4,8 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.Generic
 {
     public static class BetweenValidation
     {
+        public const string Code = "Between";
+
         public class Rule<TValue> : IValidationRule<TValue, Error>
             where TValue : IComparable<TValue>
         {

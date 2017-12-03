@@ -4,6 +4,8 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.Generic
 {
     public static class IsEnumValueValidation
     {
+        public const string Code = "IsEnum";
+
         public class Rule<TEnum> : IValidationRule<TEnum, Error>
             where TEnum : struct
         {

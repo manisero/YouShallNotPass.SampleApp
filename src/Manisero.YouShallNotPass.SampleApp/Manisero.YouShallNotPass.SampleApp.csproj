@@ -65,6 +65,7 @@
     <Compile Include="Validation\ValidationFacade.cs" />
     <Compile Include="Validation\Rules\UserValidationRules.cs" />
     <Compile Include="Validation\Validations\BuiltIn\BuiltInValidationCodes.cs" />
+    <Compile Include="Validation\Validations\BuiltIn\IfValidation.cs" />
     <Compile Include="Validation\Validations\BuiltIn\MemberValidation.cs" />
     <Compile Include="Validation\Validations\Generic\BetweenValidation.cs" />
     <Compile Include="Validation\Validations\Generic\IsEnumValueValidation.cs" />

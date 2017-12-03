@@ -7,7 +7,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn
 {
     public class MemberValidationErrorMessage : IValidationErrorMessage
     {
-        public string Code => "Member";
+        public string Code => BuiltInValidationCodes.Member;
 
         public string MemberName { get; set; }
 

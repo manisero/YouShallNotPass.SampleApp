@@ -3,6 +3,7 @@ using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.SampleApp.Utils;
 using Manisero.YouShallNotPass.SampleApp.Validation.Validations;
 using Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn;
+using Manisero.YouShallNotPass.SampleApp.Validation.Validations.Generic;
 using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
@@ -13,12 +14,17 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
         {
             return new ValidationErrorFormattingEngineBuilder<IEnumerable<IValidationErrorMessage>>()
                 // Built in
-                .RegisterFullGenericFormatter(typeof(AllValidationErrorFormatter<>))
+                .RegisterErrorOnlyFormatter(new AllValidationErrorFormatter())
                 .RegisterErrorMessage<EmailValidation.Error>(BuiltInValidationCodes.Email)
+                .RegisterErrorOnlyFormatter(new IfValidationErrorFormatter())
                 .RegisterFullGenericFormatter(typeof(MemberValidationErrorFormatter<,>))
                 .RegisterErrorMessage<NotNullValidation.Error>(BuiltInValidationCodes.NotNull)
                 .RegisterErrorMessage<NotNullNorWhiteSpaceValidation.Error>(BuiltInValidationCodes.NotNullNorWhiteSpace)
-                // Custom specific
+                // Custom (generic)
+                .RegisterErrorMessage<BetweenValidation.Error>(BetweenValidation.Code)
+                .RegisterErrorMessage<IsEnumValueValidation.Error>(IsEnumValueValidation.Code)
+                .RegisterErrorMessage<NullValidation.Error>(NullValidation.Code)
+                // Custom (specific)
                 .RegisterErrorMessage<UserEmailContainsLastNameValidation.Error>(UserEmailContainsLastNameValidation.Code)
                 .RegisterErrorMessage<UserEmailUniqueValidation.Error>(UserEmailUniqueValidation.Code)
                 .RegisterErrorMessage<UserExistsValidation.Error>(UserExistsValidation.Code)

@@ -1,19 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Manisero.YouShallNotPass.ErrorFormatting;
 using Manisero.YouShallNotPass.Validations;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn
 {
-    public class AllValidationErrorFormatter : IValidationErrorFormatter<AllValidation.Error,
-                                                                         IEnumerable<IValidationErrorMessage>>
+    public class IfValidationErrorFormatter : IValidationErrorFormatter<IfValidation.Error, IEnumerable<IValidationErrorMessage>>
     {
         public IEnumerable<IValidationErrorMessage> Format(
-            AllValidation.Error error,
+            IfValidation.Error error,
             ValidationErrorFormattingContext<IEnumerable<IValidationErrorMessage>> context)
         {
-            return error.Violations.Values
-                        .SelectMany(x => context.Engine.Format(x));
+            return context.Engine.Format(error.Violation);
         }
     }
 }

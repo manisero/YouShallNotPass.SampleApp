@@ -2,6 +2,8 @@
 {
     public static class NullValidation
     {
+        public const string Code = "Null";
+
         public class Rule<TValue> : IValidationRule<TValue, Error>
         {
         }
