@@ -8,6 +8,8 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations
 {
     public static class Algorithm4ConfigurationPhasesKeysValidation
     {
+        public const string Code = "Algorithm4ConfigurationPhasesKeys";
+
         public class Rule : IValidationRule<Algorithm4Configuration, Error>
         {
         }

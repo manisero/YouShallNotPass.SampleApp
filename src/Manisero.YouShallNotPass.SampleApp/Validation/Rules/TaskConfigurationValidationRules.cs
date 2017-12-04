@@ -33,7 +33,10 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Rules
 
         public static readonly IValidationRule<Algorithm4Configuration> Algorithm4ConfigurationRule = new ValidationRuleBuilder<Algorithm4Configuration>()
             .All(b => b.Member(x => x.PhasesNumber, b1 => b1.Min(1)),
-                 _ => new Algorithm4ConfigurationPhasesKeysValidation.Rule(), // TODO: Should be Member
+                 b => b.Member(
+                     nameof(Algorithm4Configuration.Phases),
+                     x => x,
+                     new Algorithm4ConfigurationPhasesKeysValidation.Rule()),
                  b => b.Member(
                      x => x.Phases,
                      b1 => b1.Map(

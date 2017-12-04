@@ -31,6 +31,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
             builder.RegisterErrorMessage<NullValidation.Error>(NullValidation.Code);
 
             // Custom (specific)
+            builder.RegisterErrorMessage<Algorithm4ConfigurationPhasesKeysValidation.Error>(Algorithm4ConfigurationPhasesKeysValidation.Code);
             builder.RegisterErrorMessage<UserEmailContainsLastNameValidation.Error>(UserEmailContainsLastNameValidation.Code);
             builder.RegisterErrorMessage<UserEmailUniqueValidation.Error>(UserEmailUniqueValidation.Code);
             builder.RegisterErrorMessage<UserExistsValidation.Error>(UserExistsValidation.Code);
