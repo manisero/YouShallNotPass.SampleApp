@@ -1,4 +1,4 @@
-﻿using Manisero.YouShallNotPass.SampleApp.Validation;
+﻿using Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors;
 
 namespace Manisero.YouShallNotPass.SampleApp
 {

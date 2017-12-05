@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using Manisero.YouShallNotPass.SampleApp.Utils;
 using Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn;
 
-namespace Manisero.YouShallNotPass.SampleApp.Validation
+namespace Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors
 {
-    public class ValidationError
+    public class ComplexValidationError
     {
         public ICollection<IValidationErrorMessage> OverallErrors { get; set; }
 
         public IDictionary<string, ICollection<IValidationErrorMessage>> MemberErrors { get; set; }
     }
 
-    public interface IValidationErrorBuilder
+    public interface IComplexValidationErrorBuilder
     {
-        ValidationError Build(ICollection<IValidationErrorMessage> errorMessages);
+        ComplexValidationError Build(ICollection<IValidationErrorMessage> errorMessages);
     }
 
-    public class ValidationErrorBuilder : IValidationErrorBuilder
+    public class ComplexValidationErrorBuilder : IComplexValidationErrorBuilder
     {
-        public ValidationError Build(ICollection<IValidationErrorMessage> errorMessages)
+        public ComplexValidationError Build(ICollection<IValidationErrorMessage> errorMessages)
         {
-            var result = new ValidationError
+            var result = new ComplexValidationError
             {
                 OverallErrors = new List<IValidationErrorMessage>(),
                 MemberErrors = new Dictionary<string, ICollection<IValidationErrorMessage>>(StringComparer.OrdinalIgnoreCase)

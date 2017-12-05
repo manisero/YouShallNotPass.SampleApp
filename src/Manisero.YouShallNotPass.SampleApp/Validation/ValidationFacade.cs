@@ -3,6 +3,7 @@ using Manisero.YouShallNotPass.SampleApp.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using Manisero.YouShallNotPass.SampleApp.Validation.Factories;
+using Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation
 {
@@ -15,14 +16,14 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
     {
         private readonly IValidationEngine _validationEngine;
         private readonly IValidationErrorFormattingEngine<IEnumerable<IValidationErrorMessage>> _validationErrorFormattingEngine;
-        private readonly IValidationErrorBuilder _validationErrorBuilder;
+        private readonly IComplexValidationErrorBuilder _complexValidationErrorBuilder;
 
         public ValidationFacade(
             IUserRepository userRepository)
         {
             _validationEngine = new ValidationEngineFactory().Create(userRepository);
             _validationErrorFormattingEngine = new ValidationErrorFormattingEngineFactory().Create();
-            _validationErrorBuilder = new ValidationErrorBuilder();
+            _complexValidationErrorBuilder = new ComplexValidationErrorBuilder();
         }
 
         public ValidationError Validate<TValue>(TValue value)
@@ -36,7 +37,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
 
             var errorMessages = _validationErrorFormattingEngine.Format(validationResult);
 
-            return _validationErrorBuilder.Build(errorMessages.ToArray());
+            return ValidationErrorBuilder.Build(errorMessages.ToArray());
         }
     }
 }
