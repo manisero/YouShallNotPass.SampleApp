@@ -16,14 +16,12 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation
     {
         private readonly IValidationEngine _validationEngine;
         private readonly IValidationErrorFormattingEngine<IEnumerable<IValidationErrorMessage>> _validationErrorFormattingEngine;
-        private readonly IComplexValidationErrorBuilder _complexValidationErrorBuilder;
 
         public ValidationFacade(
             IUserRepository userRepository)
         {
             _validationEngine = new ValidationEngineFactory().Create(userRepository);
             _validationErrorFormattingEngine = new ValidationErrorFormattingEngineFactory().Create();
-            _complexValidationErrorBuilder = new ComplexValidationErrorBuilder();
         }
 
         public ValidationError Validate<TValue>(TValue value)

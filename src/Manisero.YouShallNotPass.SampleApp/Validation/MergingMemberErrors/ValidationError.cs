@@ -18,7 +18,8 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors
             return new ValidationError
             {
                 Original = errorMessages,
-                Complex = new ComplexValidationErrorBuilder().Build(errorMessages)
+                Complex = new ComplexValidationErrorBuilder().Build(errorMessages),
+                Merged = MemberErrorsMerger.Merge(errorMessages)
             };
         }
     }
