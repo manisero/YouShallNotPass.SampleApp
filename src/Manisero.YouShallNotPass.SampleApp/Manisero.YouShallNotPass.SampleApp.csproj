@@ -55,7 +55,9 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Queries\UsersQuery.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Utils\DictionaryExtensions.cs" />
     <Compile Include="Utils\ObjectExtensions.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="Validation\Factories\ValidationEngineFactory.cs" />
     <Compile Include="Validation\Rules\TaskConfigurationValidationRules.cs" />
     <Compile Include="Validation\Validations\Algorithm4ConfigurationPhasesKeysValidation.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Validation\Validations\UserEmailContainsLastNameValidation.cs" />
     <Compile Include="Validation\Validations\UserEmailUniqueValidation.cs" />
     <Compile Include="Validation\Validations\UserExistsValidation.cs" />
+    <Compile Include="Validation\ValidationError.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

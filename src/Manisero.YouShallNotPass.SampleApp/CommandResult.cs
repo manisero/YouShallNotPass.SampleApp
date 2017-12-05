@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using Manisero.YouShallNotPass.SampleApp.Validation;
+﻿using Manisero.YouShallNotPass.SampleApp.Validation;
 
 namespace Manisero.YouShallNotPass.SampleApp
 {
     public class CommandResult
     {
-        public ICollection<IValidationErrorMessage> ValidationError { get; set; }
+        public ValidationError ValidationError { get; set; }
     }
 
     public static class CommandResultExtensions

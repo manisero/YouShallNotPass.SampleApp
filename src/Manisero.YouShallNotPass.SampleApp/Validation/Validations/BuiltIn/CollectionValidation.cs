@@ -10,6 +10,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn
     {
         public string Code => BuiltInValidationCodes.Collection;
 
+        /// <summary>item index -> errors</summary>
         public IDictionary<int, ICollection<IValidationErrorMessage>> Errors { get; set; }
     }
 
