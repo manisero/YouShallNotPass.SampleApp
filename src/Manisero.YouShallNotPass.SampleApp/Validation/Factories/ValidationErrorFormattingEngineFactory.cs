@@ -19,16 +19,16 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
             builder.RegisterErrorOnlyFormatter(new CollectionValidationErrorFormatter());
             builder.RegisterErrorMessage<EmailValidation.Error>(BuiltInValidationCodes.Email);
             builder.RegisterErrorOnlyFormatter(new IfValidationErrorFormatter());
+            builder.RegisterErrorMessage<IsEnumValueValidation.Error>(BuiltInValidationCodes.IsEnumValue);
             builder.RegisterErrorOnlyFormatter(new MapValidationErrorFormatter());
             builder.RegisterFullGenericFormatter(typeof(MemberValidationErrorFormatter<,>));
             builder.RegisterErrorOnlyGenericFormatter(typeof(MinValidationErrorFormatter<>));
             builder.RegisterErrorMessage<NotNullValidation.Error>(BuiltInValidationCodes.NotNull);
             builder.RegisterErrorMessage<NotNullNorWhiteSpaceValidation.Error>(BuiltInValidationCodes.NotNullNorWhiteSpace);
+            builder.RegisterErrorMessage<NullValidation.Error>(BuiltInValidationCodes.Null);
 
             // Custom (generic)
             builder.RegisterErrorMessage<BetweenValidation.Error>(BetweenValidation.Code);
-            builder.RegisterErrorMessage<IsEnumValueValidation.Error>(IsEnumValueValidation.Code);
-            builder.RegisterErrorMessage<NullValidation.Error>(NullValidation.Code);
 
             // Custom (specific)
             builder.RegisterErrorMessage<Algorithm4ConfigurationPhasesKeysValidation.Error>(Algorithm4ConfigurationPhasesKeysValidation.Code);

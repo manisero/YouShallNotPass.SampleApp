@@ -23,8 +23,6 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.Factories
         {
             // Generic
             builder.RegisterFullGenericValidator(typeof(BetweenValidation.Validator<>));
-            builder.RegisterFullGenericValidator(typeof(IsEnumValueValidation.Validator<>));
-            builder.RegisterFullGenericValidator(typeof(NullValidation.Validator<>));
 
             // Specific
             builder.RegisterFullValidator(new Algorithm4ConfigurationPhasesKeysValidation.Validator());
