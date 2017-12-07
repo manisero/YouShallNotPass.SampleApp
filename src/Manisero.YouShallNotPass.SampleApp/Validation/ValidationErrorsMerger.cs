@@ -3,9 +3,14 @@ using Manisero.YouShallNotPass.SampleApp.Utils;
 using Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn;
 using Manisero.YouShallNotPass.SampleApp.Validation.Validations.Generic;
 
-namespace Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors
+namespace Manisero.YouShallNotPass.SampleApp.Validation
 {
-    public class MemberErrorsMerger
+    public interface IValidationErrorsMerger
+    {
+        ICollection<IValidationErrorMessage> Merge(ICollection<IValidationErrorMessage> errors);
+    }
+
+    public class ValidationErrorsMerger : IValidationErrorsMerger
     {
         private class MergedError
         {
@@ -54,7 +59,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors
             }
         }
 
-        public static ICollection<IValidationErrorMessage> Merge(ICollection<IValidationErrorMessage> errors)
+        public ICollection<IValidationErrorMessage> Merge(ICollection<IValidationErrorMessage> errors)
         {
             var mergedError = new MergedError();
             MergeInto(errors, mergedError);
@@ -62,7 +67,7 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors
             return mergedError.ToErrorMessages();
         }
 
-        private static void MergeInto(ICollection<IValidationErrorMessage> errors, MergedError mergedErrorToFill)
+        private void MergeInto(ICollection<IValidationErrorMessage> errors, MergedError mergedErrorToFill)
         {
             foreach (var errorMessage in errors)
             {

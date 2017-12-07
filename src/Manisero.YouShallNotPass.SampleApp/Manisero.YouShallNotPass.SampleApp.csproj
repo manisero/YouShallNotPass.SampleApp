@@ -59,7 +59,7 @@
     <Compile Include="Utils\ObjectExtensions.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="Validation\Factories\ValidationEngineFactory.cs" />
-    <Compile Include="Validation\MergingMemberErrors\MemberErrorsMerger.cs" />
+    <Compile Include="Validation\ValidationErrorsMerger.cs" />
     <Compile Include="Validation\MergingMemberErrors\ValidationError.cs" />
     <Compile Include="Validation\Rules\TaskConfigurationValidationRules.cs" />
     <Compile Include="Validation\Validations\Algorithm4ConfigurationPhasesKeysValidation.cs" />
