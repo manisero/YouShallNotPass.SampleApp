@@ -58,7 +58,13 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors
                 }
                 else if (error.Code.EqualsOrdinalIgnoreCase(BuiltInValidationCodes.Collection))
                 {
-                    // TODO: Handle
+                    var collectionError = (CollectionValidationErrorMessage)error;
+
+                    foreach (var indexToItemError in collectionError.Errors)
+                    {
+                        var childError = mergedErrorToFill.GetChildError(indexToItemError.Key.ToString());
+                        MergeInto(indexToItemError.Value, childError);
+                    }
                 } // TODO: Dictionary
                 else
                 {
