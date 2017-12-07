@@ -60,7 +60,6 @@
     <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="Validation\Factories\ValidationEngineFactory.cs" />
     <Compile Include="Validation\ValidationErrorsMerger.cs" />
-    <Compile Include="Validation\MergingMemberErrors\ValidationError.cs" />
     <Compile Include="Validation\Rules\TaskConfigurationValidationRules.cs" />
     <Compile Include="Validation\Validations\Algorithm4ConfigurationPhasesKeysValidation.cs" />
     <Compile Include="Validation\Validations\BuiltIn\CollectionValidation.cs" />
@@ -81,7 +80,6 @@
     <Compile Include="Validation\Validations\UserEmailContainsLastNameValidation.cs" />
     <Compile Include="Validation\Validations\UserEmailUniqueValidation.cs" />
     <Compile Include="Validation\Validations\UserExistsValidation.cs" />
-    <Compile Include="Validation\MergingMemberErrors\ComplexValidationError.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

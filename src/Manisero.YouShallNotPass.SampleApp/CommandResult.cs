@@ -1,10 +1,11 @@
-﻿using Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors;
+﻿using System.Collections.Generic;
+using Manisero.YouShallNotPass.SampleApp.Validation;
 
 namespace Manisero.YouShallNotPass.SampleApp
 {
     public class CommandResult
     {
-        public ValidationError ValidationError { get; set; }
+        public ICollection<IValidationErrorMessage> ValidationError { get; set; }
     }
 
     public static class CommandResultExtensions
