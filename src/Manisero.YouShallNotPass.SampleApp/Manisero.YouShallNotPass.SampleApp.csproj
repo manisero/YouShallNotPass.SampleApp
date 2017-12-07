@@ -76,6 +76,7 @@
     <Compile Include="Validation\Validations\BuiltIn\MemberValidation.cs" />
     <Compile Include="Validation\Validations\Generic\BetweenValidation.cs" />
     <Compile Include="Validation\Validations\Generic\IsEnumValueValidation.cs" />
+    <Compile Include="Validation\Validations\Generic\ItemValidationErrorMessage.cs" />
     <Compile Include="Validation\Validations\Generic\NullValidation.cs" />
     <Compile Include="Validation\Validations\UserEmailContainsLastNameValidation.cs" />
     <Compile Include="Validation\Validations\UserEmailUniqueValidation.cs" />

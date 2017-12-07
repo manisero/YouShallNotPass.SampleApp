@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Manisero.YouShallNotPass.SampleApp.Utils;
 using Manisero.YouShallNotPass.SampleApp.Validation.Validations.BuiltIn;
+using Manisero.YouShallNotPass.SampleApp.Validation.Validations.Generic;
 
 namespace Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors
 {
@@ -9,28 +10,43 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors
         private class MergedError
         {
             private readonly ICollection<IValidationErrorMessage> _selfErrors = new List<IValidationErrorMessage>();
-            private readonly IDictionary<string, MergedError> _childErrors = new Dictionary<string, MergedError>();
+            private readonly IDictionary<string, MergedError> _memberErrors = new Dictionary<string, MergedError>();
+            private readonly IDictionary<int, MergedError> _itemErrors = new Dictionary<int, MergedError>();
 
             public void Add(IValidationErrorMessage error)
             {
                 _selfErrors.Add(error);
             }
 
-            public MergedError GetChildError(string member)
+            public MergedError GetMemberError(string memberName)
             {
-                return _childErrors.GetOrAdd(member, _ => new MergedError());
+                return _memberErrors.GetOrAdd(memberName, _ => new MergedError());
+            }
+
+            public MergedError GetItemError(int itemIndex)
+            {
+                return _itemErrors.GetOrAdd(itemIndex, _ => new MergedError());
             }
 
             public ICollection<IValidationErrorMessage> ToErrorMessages()
             {
                 var result = new List<IValidationErrorMessage>(_selfErrors);
 
-                foreach (var memberNameToError in _childErrors)
+                foreach (var memberNameToError in _memberErrors)
                 {
                     result.Add(new MemberValidationErrorMessage
                     {
                         MemberName = memberNameToError.Key,
                         Errors = memberNameToError.Value.ToErrorMessages()
+                    });
+                }
+
+                foreach (var itemIndexToError in _itemErrors)
+                {
+                    result.Add(new ItemValidationErrorMessage
+                    {
+                        ItemIndex = itemIndexToError.Key,
+                        Errors = itemIndexToError.Value.ToErrorMessages()
                     });
                 }
 
@@ -48,27 +64,27 @@ namespace Manisero.YouShallNotPass.SampleApp.Validation.MergingMemberErrors
 
         private static void MergeInto(ICollection<IValidationErrorMessage> errors, MergedError mergedErrorToFill)
         {
-            foreach (var error in errors)
+            foreach (var errorMessage in errors)
             {
-                if (error.Code.EqualsOrdinalIgnoreCase(BuiltInValidationCodes.Member))
+                if (errorMessage.Code.EqualsOrdinalIgnoreCase(BuiltInValidationCodes.Member))
                 {
-                    var memberError = (MemberValidationErrorMessage)error;
-                    var childError = mergedErrorToFill.GetChildError(memberError.MemberName);
-                    MergeInto(memberError.Errors, childError);
+                    var memberErrorMessage = (MemberValidationErrorMessage)errorMessage;
+                    var memberError = mergedErrorToFill.GetMemberError(memberErrorMessage.MemberName);
+                    MergeInto(memberErrorMessage.Errors, memberError);
                 }
-                else if (error.Code.EqualsOrdinalIgnoreCase(BuiltInValidationCodes.Collection))
+                else if (errorMessage.Code.EqualsOrdinalIgnoreCase(BuiltInValidationCodes.Collection))
                 {
-                    var collectionError = (CollectionValidationErrorMessage)error;
+                    var collectionErrorMessage = (CollectionValidationErrorMessage)errorMessage;
 
-                    foreach (var indexToItemError in collectionError.Errors)
+                    foreach (var indexToItemErrorMessage in collectionErrorMessage.Errors)
                     {
-                        var childError = mergedErrorToFill.GetChildError(indexToItemError.Key.ToString());
-                        MergeInto(indexToItemError.Value, childError);
+                        var itemError = mergedErrorToFill.GetItemError(indexToItemErrorMessage.Key);
+                        MergeInto(indexToItemErrorMessage.Value, itemError);
                     }
                 } // TODO: Dictionary
                 else
                 {
-                    mergedErrorToFill.Add(error);
+                    mergedErrorToFill.Add(errorMessage);
                 }
             }
         }
