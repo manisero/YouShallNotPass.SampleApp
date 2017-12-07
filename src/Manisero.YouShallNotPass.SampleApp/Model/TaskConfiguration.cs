@@ -48,6 +48,9 @@ namespace Manisero.YouShallNotPass.SampleApp.Model
 
     public class Algorithm4Configuration
     {
+        /// <summary>Each item should be greater than 0.</summary>
+        public int[] Vector { get; set; }
+
         /// <summary>Should be greater than 0.</summary>
         public int PhasesNumber { get; set; }
 
